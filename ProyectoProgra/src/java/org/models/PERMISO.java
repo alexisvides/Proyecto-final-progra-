@@ -9,21 +9,25 @@ package org.models;
  *
  * @author jonmi
  */
-public class Usuario {
+public class PERMISO {
+   public int ID_PERMISO;
 public int ID_MODULO;
-public String NOMBRE;
-public String DESCRIPCION;
-public String PATH;
-public int NIVEL;
-public int ORDEN; 
-public int ID_MODULO_PADRE;
+public int ID_ROL;
 public int ACTIVO;
 public String USUARIO_CREA;
 public String USUARIO_MOD;
 public String FECHA_CREA;
 public String FECHA_MOD;
 
-    public Usuario() {
+    public PERMISO() {
+    }
+
+    public int getID_PERMISO() {
+        return ID_PERMISO;
+    }
+
+    public void setID_PERMISO(int ID_PERMISO) {
+        this.ID_PERMISO = ID_PERMISO;
     }
 
     public int getID_MODULO() {
@@ -34,52 +38,12 @@ public String FECHA_MOD;
         this.ID_MODULO = ID_MODULO;
     }
 
-    public String getNOMBRE() {
-        return NOMBRE;
+    public int getID_ROL() {
+        return ID_ROL;
     }
 
-    public void setNOMBRE(String NOMBRE) {
-        this.NOMBRE = NOMBRE;
-    }
-
-    public String getDESCRIPCION() {
-        return DESCRIPCION;
-    }
-
-    public void setDESCRIPCION(String DESCRIPCION) {
-        this.DESCRIPCION = DESCRIPCION;
-    }
-
-    public String getPATH() {
-        return PATH;
-    }
-
-    public void setPATH(String PATH) {
-        this.PATH = PATH;
-    }
-
-    public int getNIVEL() {
-        return NIVEL;
-    }
-
-    public void setNIVEL(int NIVEL) {
-        this.NIVEL = NIVEL;
-    }
-
-    public int getORDEN() {
-        return ORDEN;
-    }
-
-    public void setORDEN(int ORDEN) {
-        this.ORDEN = ORDEN;
-    }
-
-    public int getID_MODULO_PADRE() {
-        return ID_MODULO_PADRE;
-    }
-
-    public void setID_MODULO_PADRE(int ID_MODULO_PADRE) {
-        this.ID_MODULO_PADRE = ID_MODULO_PADRE;
+    public void setID_ROL(int ID_ROL) {
+        this.ID_ROL = ID_ROL;
     }
 
     public int getACTIVO() {
@@ -121,7 +85,6 @@ public String FECHA_MOD;
     public void setFECHA_MOD(String FECHA_MOD) {
         this.FECHA_MOD = FECHA_MOD;
     }
-
 
 
 }
