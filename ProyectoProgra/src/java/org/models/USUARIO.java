@@ -10,28 +10,28 @@ package org.models;
  * @author jonmi
  */
 public class USUARIO {
-public int ID_MODULO;
+public int ID_USUARIO;
 public String NOMBRE;
-public String DESCRIPCION;
-public String PATH;
-public int NIVEL;
-public int ORDEN; 
-public int ID_MODULO_PADRE;
+public String APELLIDO;
+public String USUARIO;
+public String PASSWORD;
+public int ID_ROL;
 public int ACTIVO;
+public String FECHA_CREA;
+public String FECHA_MOD; 
 public String USUARIO_CREA;
 public String USUARIO_MOD;
-public String FECHA_CREA;
-public String FECHA_MOD;
+public int CODIGO;
 
     public USUARIO() {
     }
 
-    public int getID_MODULO() {
-        return ID_MODULO;
+    public int getID_USUARIO() {
+        return ID_USUARIO;
     }
 
-    public void setID_MODULO(int ID_MODULO) {
-        this.ID_MODULO = ID_MODULO;
+    public void setID_USUARIO(int ID_USUARIO) {
+        this.ID_USUARIO = ID_USUARIO;
     }
 
     public String getNOMBRE() {
@@ -42,44 +42,36 @@ public String FECHA_MOD;
         this.NOMBRE = NOMBRE;
     }
 
-    public String getDESCRIPCION() {
-        return DESCRIPCION;
+    public String getAPELLIDO() {
+        return APELLIDO;
     }
 
-    public void setDESCRIPCION(String DESCRIPCION) {
-        this.DESCRIPCION = DESCRIPCION;
+    public void setAPELLIDO(String APELLIDO) {
+        this.APELLIDO = APELLIDO;
     }
 
-    public String getPATH() {
-        return PATH;
+    public String getUSUARIO() {
+        return USUARIO;
     }
 
-    public void setPATH(String PATH) {
-        this.PATH = PATH;
+    public void setUSUARIO(String USUARIO) {
+        this.USUARIO = USUARIO;
     }
 
-    public int getNIVEL() {
-        return NIVEL;
+    public String getPASSWORD() {
+        return PASSWORD;
     }
 
-    public void setNIVEL(int NIVEL) {
-        this.NIVEL = NIVEL;
+    public void setPASSWORD(String PASSWORD) {
+        this.PASSWORD = PASSWORD;
     }
 
-    public int getORDEN() {
-        return ORDEN;
+    public int getID_ROL() {
+        return ID_ROL;
     }
 
-    public void setORDEN(int ORDEN) {
-        this.ORDEN = ORDEN;
-    }
-
-    public int getID_MODULO_PADRE() {
-        return ID_MODULO_PADRE;
-    }
-
-    public void setID_MODULO_PADRE(int ID_MODULO_PADRE) {
-        this.ID_MODULO_PADRE = ID_MODULO_PADRE;
+    public void setID_ROL(int ID_ROL) {
+        this.ID_ROL = ID_ROL;
     }
 
     public int getACTIVO() {
@@ -88,6 +80,22 @@ public String FECHA_MOD;
 
     public void setACTIVO(int ACTIVO) {
         this.ACTIVO = ACTIVO;
+    }
+
+    public String getFECHA_CREA() {
+        return FECHA_CREA;
+    }
+
+    public void setFECHA_CREA(String FECHA_CREA) {
+        this.FECHA_CREA = FECHA_CREA;
+    }
+
+    public String getFECHA_MOD() {
+        return FECHA_MOD;
+    }
+
+    public void setFECHA_MOD(String FECHA_MOD) {
+        this.FECHA_MOD = FECHA_MOD;
     }
 
     public String getUSUARIO_CREA() {
@@ -106,21 +114,15 @@ public String FECHA_MOD;
         this.USUARIO_MOD = USUARIO_MOD;
     }
 
-    public String getFECHA_CREA() {
-        return FECHA_CREA;
+    public int getCODIGO() {
+        return CODIGO;
     }
 
-    public void setFECHA_CREA(String FECHA_CREA) {
-        this.FECHA_CREA = FECHA_CREA;
+    public void setCODIGO(int CODIGO) {
+        this.CODIGO = CODIGO;
     }
 
-    public String getFECHA_MOD() {
-        return FECHA_MOD;
-    }
-
-    public void setFECHA_MOD(String FECHA_MOD) {
-        this.FECHA_MOD = FECHA_MOD;
-    }
+    
 
 
 
