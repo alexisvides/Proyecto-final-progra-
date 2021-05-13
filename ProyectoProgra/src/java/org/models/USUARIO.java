@@ -5,6 +5,8 @@
  */
 package org.models;
 
+import java.sql.Date;
+
 /**
  *
  * @author jonmi
@@ -17,8 +19,8 @@ public String USUARIO;
 public String PASSWORD;
 public int ID_ROL;
 public int ACTIVO;
-public String FECHA_CREA;
-public String FECHA_MOD; 
+public Date FECHA_CREA;
+public Date FECHA_MOD; 
 public String USUARIO_CREA;
 public String USUARIO_MOD;
 public int CODIGO;
@@ -82,19 +84,19 @@ public int CODIGO;
         this.ACTIVO = ACTIVO;
     }
 
-    public String getFECHA_CREA() {
+    public Date getFECHA_CREA() {
         return FECHA_CREA;
     }
 
-    public void setFECHA_CREA(String FECHA_CREA) {
+    public void setFECHA_CREA(Date FECHA_CREA) {
         this.FECHA_CREA = FECHA_CREA;
     }
 
-    public String getFECHA_MOD() {
+    public Date getFECHA_MOD() {
         return FECHA_MOD;
     }
 
-    public void setFECHA_MOD(String FECHA_MOD) {
+    public void setFECHA_MOD(Date FECHA_MOD) {
         this.FECHA_MOD = FECHA_MOD;
     }
 
