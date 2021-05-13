@@ -103,12 +103,12 @@ public class DaoPermiso implements CrudPermiso {
     public boolean modificar(PERMISO permiso) {
         strSql = "UPDATE  PERMISO SET ID_MODULO = " + permiso.getID_MODULO()+ ", "
                 + "ID_ROL = " + permiso.getID_ROL()+ ","
-                + "EXISTENCIA=" + permiso.getACTIVO()+ " ,"
+                + "ACTIVO = " + permiso.getACTIVO()+ " ,"
                 + "USUARIO_CREA = '" + permiso.getUSUARIO_CREA()+ "', "
                 + "USUARIO_MOD = '" + permiso.getUSUARIO_MOD()+ "', "
                 + "FECHA_CREA = '" + permiso.getFECHA_CREA()+ "', "
                 + "FECHA_MOD = '" + permiso.getFECHA_MOD()+ "' "
-                + "WHERE ID_PRODUCTO =" + permiso.getID_PERMISO()+ "";
+                + "WHERE ID_PERMISO =" + permiso.getID_PERMISO()+ "";
 
         try {
             //se abre una conexión hacia la BD

@@ -12,6 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.config.Conexion;
 import org.interfaces.CrudRol;
+import org.models.PERMISO;
 import org.models.ROL;
 
 /**
@@ -35,7 +36,7 @@ public class DaoRol implements CrudRol{
     public List listar() {
          ArrayList<ROL> lstRol = new ArrayList<>();
          try {            
-            strSql =    "SELECT * FROM MUNICIPIO";
+            strSql =    "SELECT * FROM ROL";
             conexion.open();
             rs = conexion.executeQuery(strSql);                             
             
@@ -67,22 +68,91 @@ public class DaoRol implements CrudRol{
     public ROL list(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-//
-//    @Override
-//    public boolean insertar(Municipio editorial) {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-//    }
-//
-//    @Override
-//    public boolean modificar(Municipio editorial) {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-//    }
-//
-//    @Override
-//    public boolean eliminar(Municipio editorial) {
-//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-//    }
-//
+    
+    @Override
+    public boolean insertar(ROL rol) {
+       
+        strSql = "INSERT INTO ROL (ID_ROL, NOMBRE, DESCRIPCION, ACTIVO, USUARIO_CREA, USUARIO_MOD, FECHA_CREA, FECHA_MOD) VALUES ("
+                + "SELECT  (SELECT ISNULL(MAX(ID_ROL),0) + 1 FROM ROL), " +                 
+                "'" + rol.getNOMBRE()+ "', " +       
+                "'" + rol.getDESCRIPCION()+ "', " +
+                "'" + rol.getACTIVO()+ "'" + 
+                "'" + rol.getFECHA_CREA()+ "', " +
+                "'" + rol.getFECHA_MOD()+ "', " +
+                "'" + rol.getUSUARIO_CREA()+ "', " +
+                "'" + rol.getUSUARIO_MOD()+ "' )";
+        
+        try {
+            //se abre una conexión hacia la BD
+            conexion.open();
+            //Se ejecuta la instrucción y retorna si la ejecución fue satisfactoria
+            respuesta = conexion.executeSql(strSql);
+            //Se cierra la conexión hacia la BD
+            conexion.close();
+             
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(DaoUsuario.class.getName()).log(Level.SEVERE, null, ex);     
+            return false;
+        } catch(Exception ex){
+            Logger.getLogger(DaoUsuario.class.getName()).log(Level.SEVERE, null, ex);            
+        }
+        
+        return respuesta;
+    }
+    
+    @Override
+    public boolean modificar(ROL rol) {
+        strSql = "UPDATE  ROL SET NOMBRE = '" + rol.getNOMBRE()+ "', "
+                + "DESCRIPCION = '" + rol.getDESCRIPCION()+ "', "
+                + "ACTIVO = " + rol.getACTIVO()+ ", "
+                + "USUARIO_CREA = '" + rol.getUSUARIO_CREA()+ "', "
+                + "USUARIO_MOD = '" + rol.getUSUARIO_MOD()+ "', "
+                + "FECHA_CREA = '" + rol.getFECHA_CREA()+ "', "
+                + "FECHA_MOD = '" + rol.getFECHA_MOD()+ "' "
+                + "WHERE ID_ROL = " + rol.getID_ROL()+ "";
+
+        try {
+            //se abre una conexión hacia la BD
+            conexion.open();
+            //Se ejecuta la instrucción y retorna si la ejecución fue satisfactoria
+            respuesta = conexion.executeSql(strSql);
+            //Se cierra la conexión hacia la BD
+            conexion.close();
+
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(DaoUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        } catch (Exception ex) {
+            Logger.getLogger(DaoUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return respuesta;
+
+    }
+
+    @Override
+    public boolean eliminar(ROL rol) {
+
+        strSql = "DELETE FROM ROL WHERE ID_ROL = " + rol.getID_ROL()+ "";
+
+        try {
+            //se abre una conexión hacia la BD
+            conexion.open();
+            //Se ejecuta la instrucción y retorna si la ejecución fue satisfactoria
+            respuesta = conexion.executeSql(strSql);
+            //Se cierra la conexión hacia la BD
+            conexion.close();
+
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(DaoUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        } catch (Exception ex) {
+            Logger.getLogger(DaoUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return respuesta;
+    }
+    
 //    @Override
 //    public List busqueda(String parametro, String opcion) {
 //        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
