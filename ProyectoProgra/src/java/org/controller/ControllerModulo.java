@@ -16,7 +16,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.dao.DaoMODULO;
+import org.dao.DaoModulo;
 import org.models.MODULO;
 
 
@@ -106,7 +106,7 @@ public class ControllerModulo extends HttpServlet {
                 modulo.setACTIVO(Integer.parseInt(request.getParameter("ACTIVO")));
                 modulo.setFECHA_CREA(ParseFecha(request.getParameter("FECHA_CREA")));
                 modulo.setFECHA_MOD(ParseFecha(request.getParameter("FECHA_MOD")));
-                daoModulo.crear(modulo);
+                daoModulo.insertar(modulo);
                 acceso = ingreso;
                 break;
 

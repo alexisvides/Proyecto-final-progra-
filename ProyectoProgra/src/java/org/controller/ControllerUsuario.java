@@ -16,7 +16,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.dao.DaoUSUARIO;
+import org.dao.DaoUsuario;
 import org.models.USUARIO;
 
 
@@ -68,7 +68,7 @@ public class ControllerUsuario extends HttpServlet {
         String action = request.getParameter("accion");
 
         USUARIO usuario = new USUARIO();
-        DaoUSUARIO daoUSUARIO = new DaoUSUARIO();
+        DaoUsuario daoUSUARIO = new DaoUsuario();
 
         switch (action) {
 

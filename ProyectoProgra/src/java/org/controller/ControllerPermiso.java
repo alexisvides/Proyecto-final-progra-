@@ -16,7 +16,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import org.dao.DaoPERMISO;
+import org.dao.DaoPermiso;
 import org.models.PERMISO;
 
 
@@ -68,7 +68,7 @@ public class ControllerPermiso extends HttpServlet {
         String action = request.getParameter("accion");
 
         PERMISO permiso = new PERMISO();
-        DaoPERMISO daoPERMISO = new DaoPERMISO();
+        DaoPermiso daoPERMISO = new DaoPermiso();
 
         switch (action) {
 

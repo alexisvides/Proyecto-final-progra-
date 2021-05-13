@@ -47,8 +47,8 @@ public class DaoPermiso implements CrudPermiso {
                 perm.setACTIVO(rs.getInt("ACTIVO"));
                 perm.setUSUARIO_CREA(rs.getString("USUARIO_CREA"));
                 perm.setUSUARIO_MOD(rs.getString("USUARIO_MOD"));
-                perm.setFECHA_CREA(rs.getString("FECHA_CREA"));
-                perm.setFECHA_MOD(rs.getString("FECHA_MOD"));
+                perm.setFECHA_CREA(rs.getDate("FECHA_CREA"));
+                perm.setFECHA_MOD(rs.getDate("FECHA_MOD"));
                 lstPermiso.add(perm);
             }
             rs.close();
