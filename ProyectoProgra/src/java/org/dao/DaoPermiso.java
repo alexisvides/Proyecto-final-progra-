@@ -47,8 +47,8 @@ public class DaoPermiso implements CrudPermiso {
                 perm.setACTIVO(rs.getInt("ACTIVO"));
                 perm.setUSUARIO_CREA(rs.getString("USUARIO_CREA"));
                 perm.setUSUARIO_MOD(rs.getString("USUARIO_MOD"));
-                perm.setFECHA_CREA(rs.getDate("FECHA_CREA"));
-                perm.setFECHA_MOD(rs.getDate("FECHA_MOD"));
+                perm.setFECHA_CREA(rs.getString("FECHA_CREA"));
+                perm.setFECHA_MOD(rs.getString("FECHA_MOD"));
                 lstPermiso.add(perm);
             }
             rs.close();
@@ -68,102 +68,89 @@ public class DaoPermiso implements CrudPermiso {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
 
-//    @Override
-//    public boolean insertar(Producto producto) {
-//        int estado1, estado2;
-//        estado1= producto.getExistencia();
-//        if(estado1 >0){
-//            estado2 = 1;
-//        }else{
-//            estado2=0;
-//        }
-//
-//        strSql = "INSERT INTO PRODUCTO (ID_PRODUCTO, DESCRIPCION, PRECIO, EXISTENCIA, ESTADO) "
-//                + "SELECT  (SELECT ISNULL(MAX(ID_PRODUCTO),0) + 1 FROM PRODUCTO), "
-//                + "'" + producto.getDescripcion() + "', "
-//                + "" + producto.getPrecio() + ", "
-//                + "" + producto.getExistencia() + ", "
-//                + "" + estado2 + " "
-//                + "WHERE NOT EXISTS(SELECT 1 FROM PRODUCTO WHERE DESCRIPCION = '" + producto.getDescripcion() + "');";
-//
-//        try {
-//            //se abre una conexión hacia la BD
-//            conexion.open();
-//            //Se ejecuta la instrucción y retorna si la ejecución fue satisfactoria
-//            respuesta = conexion.executeSql(strSql);
-//            //Se cierra la conexión hacia la BD
-//            conexion.close();
-//
-//        } catch (ClassNotFoundException ex) {
-//            Logger.getLogger(DaoUsuario.class.getName()).log(Level.SEVERE, null, ex);
-//            return false;
-//        } catch (Exception ex) {
-//            Logger.getLogger(DaoUsuario.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//
-//        return respuesta;
-//    }
-//
-//    /**
-//     *
-//     * @param producto
-//     * @return
-//     */
-//    @Override
-//    public boolean modificar(Producto producto) {
-//        int estado1, estado2;
-//        estado1= producto.getExistencia();
-//        if(estado1 >0){
-//            estado2 = 1;
-//        }else{
-//            estado2=0;
-//        }
-//        strSql = "UPDATE  PRODUCTO SET DESCRIPCION='" + producto.getDescripcion() + "', "
-//                + " PRECIO=" + producto.getPrecio() + ","
-//                + "EXISTENCIA=" + producto.getExistencia() + " ,"
-//                + "ESTADO=" + estado2 + " WHERE ID_PRODUCTO =" + producto.getIdProducto() + "";
-//
-//        try {
-//            //se abre una conexión hacia la BD
-//            conexion.open();
-//            //Se ejecuta la instrucción y retorna si la ejecución fue satisfactoria
-//            respuesta = conexion.executeSql(strSql);
-//            //Se cierra la conexión hacia la BD
-//            conexion.close();
-//
-//        } catch (ClassNotFoundException ex) {
-//            Logger.getLogger(DaoUsuario.class.getName()).log(Level.SEVERE, null, ex);
-//            return false;
-//        } catch (Exception ex) {
-//            Logger.getLogger(DaoUsuario.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//
-//        return respuesta;
-//
-//    }
-//
-//    @Override
-//    public boolean eliminar(Producto producto) {
-//
-//        strSql = "DELETE FROM  PRODUCTO WHERE ID_PRODUCTO=" + producto.getIdProducto() + "";
-//
-//        try {
-//            //se abre una conexión hacia la BD
-//            conexion.open();
-//            //Se ejecuta la instrucción y retorna si la ejecución fue satisfactoria
-//            respuesta = conexion.executeSql(strSql);
-//            //Se cierra la conexión hacia la BD
-//            conexion.close();
-//
-//        } catch (ClassNotFoundException ex) {
-//            Logger.getLogger(DaoUsuario.class.getName()).log(Level.SEVERE, null, ex);
-//            return false;
-//        } catch (Exception ex) {
-//            Logger.getLogger(DaoUsuario.class.getName()).log(Level.SEVERE, null, ex);
-//        }
-//
-//        return respuesta;
-//    }
+    @Override
+    public boolean insertar(PERMISO permiso) {
+
+        strSql = "INSERT INTO PERMISO (ID_PERMISO, ID_MODULO, ID_ROL, ACTIVO, USUARIO_CREA, USUARIO_MOD, FECHA_CREA, FECHA_MOD) VALUES("
+                + "SELECT (SELECT ISNULL(MAX(ID_PERMISO),0) + 1 FROM PERMISO), "
+                + "'" + permiso.getID_MODULO()+ "', "
+                + "" + permiso.getID_ROL()+ ", "
+                + "" + permiso.getACTIVO()+ ", "
+                + "'" + permiso.getUSUARIO_CREA()+ "', "
+                + "'" + permiso.getUSUARIO_MOD()+ "', "
+                + "'" + permiso.getFECHA_CREA()+ "', "
+                + "'" + permiso.getFECHA_MOD()+ "') ";
+
+        try {
+            //se abre una conexión hacia la BD
+            conexion.open();
+            //Se ejecuta la instrucción y retorna si la ejecución fue satisfactoria
+            respuesta = conexion.executeSql(strSql);
+            //Se cierra la conexión hacia la BD
+            conexion.close();
+
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(DaoUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        } catch (Exception ex) {
+            Logger.getLogger(DaoUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return respuesta;
+    }
+    
+    @Override
+    public boolean modificar(PERMISO permiso) {
+        strSql = "UPDATE  PERMISO SET ID_MODULO = " + permiso.getID_MODULO()+ ", "
+                + "ID_ROL = " + permiso.getID_ROL()+ ","
+                + "EXISTENCIA=" + permiso.getACTIVO()+ " ,"
+                + "USUARIO_CREA = '" + permiso.getUSUARIO_CREA()+ "', "
+                + "USUARIO_MOD = '" + permiso.getUSUARIO_MOD()+ "', "
+                + "FECHA_CREA = '" + permiso.getFECHA_CREA()+ "', "
+                + "FECHA_MOD = '" + permiso.getFECHA_MOD()+ "' "
+                + "WHERE ID_PRODUCTO =" + permiso.getID_PERMISO()+ "";
+
+        try {
+            //se abre una conexión hacia la BD
+            conexion.open();
+            //Se ejecuta la instrucción y retorna si la ejecución fue satisfactoria
+            respuesta = conexion.executeSql(strSql);
+            //Se cierra la conexión hacia la BD
+            conexion.close();
+
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(DaoUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        } catch (Exception ex) {
+            Logger.getLogger(DaoUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return respuesta;
+
+    }
+
+    @Override
+    public boolean eliminar(PERMISO permiso) {
+
+        strSql = "DELETE FROM PERMISO WHERE ID_PERMISO = " + permiso.getID_PERMISO()+ "";
+
+        try {
+            //se abre una conexión hacia la BD
+            conexion.open();
+            //Se ejecuta la instrucción y retorna si la ejecución fue satisfactoria
+            respuesta = conexion.executeSql(strSql);
+            //Se cierra la conexión hacia la BD
+            conexion.close();
+
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(DaoUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            return false;
+        } catch (Exception ex) {
+            Logger.getLogger(DaoUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return respuesta;
+    }
 //    
 //    @Override
 //    public List busqueda(String parametro, String opcion) {
