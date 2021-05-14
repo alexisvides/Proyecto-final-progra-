@@ -24,6 +24,7 @@ import org.models.MODULO;
 public class ControllerModulo extends HttpServlet {
 
     String ingreso = "index.jsp";
+    String modificar = "";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>

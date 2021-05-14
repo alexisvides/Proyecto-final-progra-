@@ -24,16 +24,19 @@
         <link rel="stylesheet" type="text/css" href="Site.css">
     </head>
     <body>
+        <br>
+        <br>
+        <br>
+      
+
+        <br>
+        <form id="form-work" class="" name="form-work" action="ControllerProducto" method="get">
         <div class="container">
             <div class="d-flex justify-content-center h-100">
                 <div class="card">
                     <div class="card-header">
                         <h3>Registrate</h3>
-                        <div class="d-flex justify-content-end social_icon">
-                            <span><i class="fab fa-facebook-square"></i></span>
-                            <span><i class="fab fa-google-plus-square"></i></span>
-                            <span><i class="fab fa-twitter-square"></i></span>
-                        </div>
+                       
                     </div>
                     <div class="card-body">
                         <form>
@@ -52,13 +55,14 @@
                             </div>
                             <br><br><br>
                             <div class="form-group">
-                                <input type="submit" value="Login" class="btn float-right login_btn">
+                                <button id="accion" name="accion" value="create" class="btn btn-success btn-lg btn-block info" type="submit" style="background-color: darkgrey">Modificar</button>
                             </div>
                         </form>
                     </div>
                 </div>
             </div>
         </div>
+        </form>
     </body>
 </html>
 

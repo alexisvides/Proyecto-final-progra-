@@ -19,7 +19,7 @@ public class Conexion {
     private ResultSet resultado = null;
      //Cadena de Conexion
     String stringConnectionUrl = "jdbc:sqlserver://DESKTOP-2GIVIMT:1433;" +
-                                "databaseName=TEMARIOAPII;";
+                                "databaseName=PROYECTO;";
     //Driver o controlador JDBC
     String driver = "com.microsoft.sqlserver.jdbc.SQLServerDriver";
     //

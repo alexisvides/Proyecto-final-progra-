@@ -102,7 +102,7 @@ public class ControllerPermiso extends HttpServlet {
                 permiso.setACTIVO(Integer.parseInt(request.getParameter("ID_PERMISO_PADRE")));
                 permiso.setFECHA_CREA(ParseFecha(request.getParameter("FECHA_CREA")));
                 permiso.setFECHA_MOD(ParseFecha(request.getParameter("FECHA_MOD")));
-                daoPERMISO.crear(permiso);
+                daoPERMISO.insertar(permiso);
                 acceso = ingreso;
                 break;
 
