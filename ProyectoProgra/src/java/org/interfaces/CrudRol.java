@@ -15,8 +15,8 @@ import org.models.ROL;
 public interface CrudRol {
    public List listar();
    public ROL list (int id);
-//    public boolean insertar(Municipio editorial);
-//    public boolean modificar(Municipio editorial);
-//    public boolean eliminar(Municipio editorial);
-//    public List busqueda(String parametro, String opcion);   
+ public boolean insertar(ROL editorial);
+   public boolean modificar(ROL editorial);
+    public boolean eliminar(ROL editorial);
+    public List busqueda(String parametro, String opcion);   
 }

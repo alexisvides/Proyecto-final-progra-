@@ -4,7 +4,7 @@
  * and open the template in the editor.
  */
 package org.models;
-
+import java.sql.Date;
 /**
  *
  * @author jonmi
@@ -16,8 +16,8 @@ public String DESCRIPCION;
 public int ACTIVO;
 public String USUARIO_CREA;
 public String USUARIO_MOD;
-public String FECHA_CREA;
-public String FECHA_MOD;
+public Date FECHA_CREA;
+public Date FECHA_MOD;
 
     public ROL() {
     }
@@ -70,19 +70,19 @@ public String FECHA_MOD;
         this.USUARIO_MOD = USUARIO_MOD;
     }
 
-    public String getFECHA_CREA() {
+    public Date getFECHA_CREA() {
         return FECHA_CREA;
     }
 
-    public void setFECHA_CREA(String FECHA_CREA) {
+    public void setFECHA_CREA(Date FECHA_CREA) {
         this.FECHA_CREA = FECHA_CREA;
     }
 
-    public String getFECHA_MOD() {
+    public Date getFECHA_MOD() {
         return FECHA_MOD;
     }
 
-    public void setFECHA_MOD(String FECHA_MOD) {
+    public void setFECHA_MOD(Date FECHA_MOD) {
         this.FECHA_MOD = FECHA_MOD;
     }
 

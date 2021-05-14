@@ -30,6 +30,11 @@ public class DaoUsuario implements CrudUsuario{
     ResultSet rs = null;
     //flag para retornar si la sentencia SQL fue satisfactorio o no
     boolean respuesta = false;
+    
+    public boolean login(String user,String pass){
+        
+        return true;
+    }
 
     @Override
     public List listar() {
@@ -48,8 +53,8 @@ public class DaoUsuario implements CrudUsuario{
                 usua.setPASSWORD(rs.getString("PASSWORD"));
                 usua.setID_ROL(rs.getInt("ID_ROL"));
                 usua.setACTIVO(rs.getInt("ACTIVO"));
-                usua.setFECHA_CREA(rs.getString("FECHA_CREA"));
-                usua.setFECHA_MOD(rs.getString("FECHA_MOD"));
+                usua.setFECHA_CREA(rs.getDate("FECHA_CREA"));
+                usua.setFECHA_MOD(rs.getDate("FECHA_MOD"));
                 usua.setUSUARIO_CREA(rs.getString("USUARIO_CREA"));
                 usua.setUSUARIO_MOD(rs.getString("USUARIO_MOD"));
                 usua.setCODIGO(rs.getInt("CODIGO"));

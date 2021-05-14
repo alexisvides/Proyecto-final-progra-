@@ -30,7 +30,7 @@
       
 
         <br>
-        <form id="form-work" class="" name="form-work" action="ControllerProducto" method="get">
+        <form id="form-work" class="" name="form-work" action="ControllerUsuario" method="get">
         <div class="container">
             <div class="d-flex justify-content-center h-100">
                 <div class="card">
@@ -55,7 +55,7 @@
                             </div>
                             <br><br><br>
                             <div class="form-group">
-                                <button id="accion" name="accion" value="create" class="btn btn-success btn-lg btn-block info" type="submit" style="background-color: darkgrey">Modificar</button>
+                                <button id="accion" name="accion" value="login" class="btn btn-success btn-lg btn-block info" type="submit" style="background-color: darkgrey">Modificar</button>
                             </div>
                         </form>
                     </div>

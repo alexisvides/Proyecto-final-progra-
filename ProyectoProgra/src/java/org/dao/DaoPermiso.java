@@ -11,19 +11,19 @@ import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.config.Conexion;
-import org.interfaces.CrudRol;
-import org.models.ROL;
+import org.interfaces.CrudPermiso;
+import org.models.PERMISO;
 
 /**
  *
  * @author Joseph
  */
-public class DaoRol implements CrudRol{
-    
+public class DaoPermiso implements CrudPermiso {
+
     //Se crea un objeto publico del Cliente
-    ROL rol = new ROL();
+    PERMISO producto = new PERMISO();
     //Variable para crear las sentencias SQL
-    String strSql =  "";
+    String strSql = "";
     //Se crea un obejto de tipo conexión para manejar la persistencia hacia la base de datos
     Conexion conexion = new Conexion();
     //Obtiene el resultado de las consultas SQL
@@ -33,54 +33,54 @@ public class DaoRol implements CrudRol{
 
     @Override
     public List listar() {
-         ArrayList<ROL> lstRol = new ArrayList<>();
-         try {            
-            strSql =    "SELECT * FROM ROL";
+        ArrayList<PERMISO> lstPermiso = new ArrayList<>();
+        try {
+            strSql = "SELECT * FROM PERMISO";
             conexion.open();
-            rs = conexion.executeQuery(strSql);                             
-            
+            rs = conexion.executeQuery(strSql);
+
             while (rs.next()) {
-                ROL rol = new ROL();
-                rol.setID_ROL(rs.getInt("ID_ROL"));
-                rol.setNOMBRE(rs.getString("NOMBRE"));
-                rol.setDESCRIPCION(rs.getString("DESCRIPCION"));
-                rol.setACTIVO(rs.getInt("ACTIVO"));
-                rol.setUSUARIO_CREA(rs.getString("USUARIO_CREA"));
-                rol.setUSUARIO_MOD(rs.getString("USUARIO_MOD"));
-                rol.setFECHA_CREA(rs.getDate("FECHA_CREA"));
-                rol.setFECHA_MOD(rs.getDate("FECHA_MOD"));                
-                lstRol.add(rol);
+                PERMISO perm = new PERMISO();
+                perm.setID_PERMISO(rs.getInt("ID_PERMISO"));
+                perm.setID_MODULO(rs.getInt("ID_MODULO"));
+                perm.setID_ROL(rs.getInt("ID_ROL"));
+                perm.setACTIVO(rs.getInt("ACTIVO"));
+                perm.setUSUARIO_CREA(rs.getString("USUARIO_CREA"));
+                perm.setUSUARIO_MOD(rs.getString("USUARIO_MOD"));
+                perm.setFECHA_CREA(rs.getDate("FECHA_CREA"));
+                perm.setFECHA_MOD(rs.getDate("FECHA_MOD"));
+                lstPermiso.add(perm);
             }
             rs.close();
             conexion.close();
-            
+
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(DaoModulo.class.getName()).log(Level.SEVERE, null, ex);            
-        } catch(Exception ex){
-            Logger.getLogger(DaoModulo.class.getName()).log(Level.SEVERE, null, ex);            
+            Logger.getLogger(DaoPermiso.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(DaoPermiso.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
-         return lstRol;
+
+        return lstPermiso;
     }
 
     @Override
-    public ROL list(int id) {
+    public PERMISO list(int id) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
+
     @Override
-    public boolean insertar(ROL rol) {
-       
-        strSql = "INSERT INTO ROL (ID_ROL, NOMBRE, DESCRIPCION, ACTIVO, USUARIO_CREA, USUARIO_MOD, FECHA_CREA, FECHA_MOD) VALUES ("
-                + "SELECT  (SELECT ISNULL(MAX(ID_ROL),0) + 1 FROM ROL), " +                 
-                "'" + rol.getNOMBRE()+ "', " +       
-                "'" + rol.getDESCRIPCION()+ "', " +
-                "'" + rol.getACTIVO()+ "'" + 
-                "'" + rol.getFECHA_CREA()+ "', " +
-                "'" + rol.getFECHA_MOD()+ "', " +
-                "'" + rol.getUSUARIO_CREA()+ "', " +
-                "'" + rol.getUSUARIO_MOD()+ "' )";
-        
+    public boolean insertar(PERMISO permiso) {
+
+        strSql = "INSERT INTO PERMISO (ID_PERMISO, ID_MODULO, ID_ROL, ACTIVO, USUARIO_CREA, USUARIO_MOD, FECHA_CREA, FECHA_MOD) VALUES("
+                + "SELECT (SELECT ISNULL(MAX(ID_PERMISO),0) + 1 FROM PERMISO), "
+                + "'" + permiso.getID_MODULO()+ "', "
+                + "" + permiso.getID_ROL()+ ", "
+                + "" + permiso.getACTIVO()+ ", "
+                + "'" + permiso.getUSUARIO_CREA()+ "', "
+                + "'" + permiso.getUSUARIO_MOD()+ "', "
+                + "'" + permiso.getFECHA_CREA()+ "', "
+                + "'" + permiso.getFECHA_MOD()+ "') ";
+
         try {
             //se abre una conexión hacia la BD
             conexion.open();
@@ -88,27 +88,28 @@ public class DaoRol implements CrudRol{
             respuesta = conexion.executeSql(strSql);
             //Se cierra la conexión hacia la BD
             conexion.close();
-             
+
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(DaoUsuario.class.getName()).log(Level.SEVERE, null, ex);     
+            Logger.getLogger(DaoUsuario.class.getName()).log(Level.SEVERE, null, ex);
             return false;
-        } catch(Exception ex){
-            Logger.getLogger(DaoUsuario.class.getName()).log(Level.SEVERE, null, ex);            
+        } catch (Exception ex) {
+            Logger.getLogger(DaoUsuario.class.getName()).log(Level.SEVERE, null, ex);
         }
-        
+
         return respuesta;
     }
     
     @Override
-    public boolean modificar(ROL rol) {
-        strSql = "UPDATE  ROL SET NOMBRE = '" + rol.getNOMBRE()+ "', "
-                + "DESCRIPCION = '" + rol.getDESCRIPCION()+ "', "
-                + "ACTIVO = " + rol.getACTIVO()+ ", "
-                + "USUARIO_CREA = '" + rol.getUSUARIO_CREA()+ "', "
-                + "USUARIO_MOD = '" + rol.getUSUARIO_MOD()+ "', "
-                + "FECHA_CREA = '" + rol.getFECHA_CREA()+ "', "
-                + "FECHA_MOD = '" + rol.getFECHA_MOD()+ "' "
-                + "WHERE ID_ROL = " + rol.getID_ROL()+ "";
+    public boolean modificar(PERMISO permiso) {
+        strSql = "UPDATE  PERMISO SET ID_MODULO = " + permiso.getID_MODULO()+ ", "
+                + "ID_ROL = " + permiso.getID_ROL()+ ","
+                + "EXISTENCIA=" + permiso.getACTIVO()+ " ,"
+                + "ACTIVO = " + permiso.getACTIVO()+ " ,"
+                + "USUARIO_CREA = '" + permiso.getUSUARIO_CREA()+ "', "
+                + "USUARIO_MOD = '" + permiso.getUSUARIO_MOD()+ "', "
+                + "FECHA_CREA = '" + permiso.getFECHA_CREA()+ "', "
+                + "FECHA_MOD = '" + permiso.getFECHA_MOD()+ "' "
+                + "WHERE ID_PERMISO =" + permiso.getID_PERMISO()+ "";
 
         try {
             //se abre una conexión hacia la BD
@@ -130,9 +131,9 @@ public class DaoRol implements CrudRol{
     }
 
     @Override
-    public boolean eliminar(ROL rol) {
+    public boolean eliminar(PERMISO permiso) {
 
-        strSql = "DELETE FROM ROL WHERE ID_ROL = " + rol.getID_ROL()+ "";
+        strSql = "DELETE FROM PERMISO WHERE ID_PERMISO = " + permiso.getID_PERMISO()+ "";
 
         try {
             //se abre una conexión hacia la BD
@@ -151,13 +152,15 @@ public class DaoRol implements CrudRol{
 
         return respuesta;
     }
+//    
+//    @Override
+//    public List busqueda(String parametro, String opcion) {
+//        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//    }
 
     @Override
     public List busqueda(String parametro, String opcion) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
-    
 
-    
 }
-

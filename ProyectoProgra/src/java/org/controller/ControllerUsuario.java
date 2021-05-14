@@ -72,7 +72,15 @@ public class ControllerUsuario extends HttpServlet {
 
         switch (action) {
 
-            case "read":
+            case "login":
+                usuario = new USUARIO();
+                usuario.setUSUARIO(request.getParameter("USUARIO"));
+                usuario.setPASSWORD(request.getParameter("PASSWORD"));
+                daoUSUARIO.login(usuario);
+                acceso = ingreso;
+                break;
+
+            case "vista":
                 acceso = ingreso;
                 break;
             case "eliminar":
