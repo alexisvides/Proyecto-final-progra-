@@ -37,8 +37,8 @@ public class DaoModulo implements CrudModulo{
                 mod.setACTIVO(rs.getInt("ACTIVO"));
                 mod.setUSUARIO_CREA(rs.getString("USUARIO_CREA"));
                 mod.setUSUARIO_MOD(rs.getString("USUARIO_MOD"));
-                mod.setFECHA_CREA(rs.getDate("FECHA_CREA"));
-                mod.setFECHA_MOD(rs.getDate("FECHA_MOD"));
+                mod.setFECHA_CREA(rs.getString("FECHA_CREA"));
+                mod.setFECHA_MOD(rs.getString("FECHA_MOD"));
                                 
                 lstModulo.add(mod);
             }

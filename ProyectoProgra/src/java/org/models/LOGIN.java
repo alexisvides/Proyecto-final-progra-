@@ -13,6 +13,24 @@ public class LOGIN {
     public String USUARIO;
     public String PASSWORD;
     public int ACTIVO;
+    public int rol;
+    public int encendido;
+
+    public int getEncendido() {
+        return encendido;
+    }
+
+    public void setEncendido(int encendido) {
+        this.encendido = encendido;
+    }
+
+    public int getRol() {
+        return rol;
+    }
+
+    public void setRol(int rol) {
+        this.rol = rol;
+    }
 
     public String getUSUARIO() {
         return USUARIO;

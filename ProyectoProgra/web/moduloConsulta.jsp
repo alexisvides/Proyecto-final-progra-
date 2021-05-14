@@ -1,3 +1,8 @@
+<%@page import="org.models.MODULO"%>
+<%@page import="java.util.Iterator"%>
+<%@page import="java.util.List"%>
+<%@page import="org.dao.DaoUsuario"%>
+<%@page import="org.dao.DaoModulo"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -26,31 +31,30 @@
                                 <th class="text-center">Acciones</th>
                             </tr>
                         </thead>
-                        <%--
+                        <%
                             DaoModulo daoModulo = new DaoModulo();
                             DaoUsuario daoUsuario = new  DaoUsuario();
-                            List<Modulo> lstModulo = daoModulo.listar();
-                            Iterator<Modulo> iteratorModulo = lstModulo.iterator();
-                            Modulo modulo = null;
-                            Usuario usuario = null;
+                            List<MODULO> lstModulo = daoModulo.listar();
+                            Iterator<MODULO> iteratorModulo = lstModulo.iterator();
+                            MODULO modulo = null;
+                            MODULO usuario = null;
                             while (iteratorModulo.hasNext()){
                                 modulo = iteratorModulo.next();                        
-                                usuario = daoUsuario.busqueda(String.valueOf(rol.getUsuario_crea()));
                                 
                                 
-                        --%>                     
+                       %>                     
                         <tbody>
                             <tr>
-                                <td class="text-center"><%--= modulo.getId_modulo()--%></td>
-                                <td class="text-center"><%--= modulo.getNombre()--%></td>
-                                <td class="text-center"><%--= modulo.getDescripcion()--%></td>
-                                <td class="text-center"><%--= modulo.getActivo()--%></td>
-                                <td class="text-center"><%--= usuario.getNombre() --%><%--= usuario.getApellido() --%><br><%--= modulo.getFecha_crea()--%></td>
-                            <%-- usuario = daoUsuario.busqueda(String.valueOf(modulo.getUsuario_mod())); --%>
-                                <td class="text-center"><%--= usuario.getNombre() --%><%--= usuario.getApellido() --%><br><%--= modulo.getFecha_mod()--%></td>
+                                <td class="text-center"><%= modulo.getID_MODULO()%></td>
+                                <td class="text-center"><%= modulo.getNOMBRE()%></td>
+                                <td class="text-center"><%= modulo.getDESCRIPCION()%></td>
+                                <td class="text-center"><%= modulo.getACTIVO()%></td>
+                                <td class="text-center"><%= modulo.getUSUARIO_CREA()%></td>
+                            
+                                <td class="text-center"><%= usuario.getUSUARIO_MOD()%></td>
                                 <td class="text-center">                                
-                                    <a href="ControllerModulo?accion=editar&id=<%--=modulo.getId_modulo()--%>">Editar</a>
-                                    <a href="ControllerModulo?accion=delete&id=<%--=modulo.getId_modulo()--%>">Eliminar</a>
+                                    <a href="ControllerModulo?accion=editar%>">Editar</a>
+                                    <a href="ControllerModulo?accion=delete%>">Eliminar</a>
                                 </td>
                             </tr>
                             <%}%>

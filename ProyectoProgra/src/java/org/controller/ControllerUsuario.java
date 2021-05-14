@@ -25,7 +25,7 @@ import org.models.LOGIN;
 @WebServlet(name = "ControllerUsuario", urlPatterns = {"/ControllerUsuario"})
 public class ControllerUsuario extends HttpServlet {
 
-    String ingreso = "usuarioConsulta.jsp", exit = "index.jsp", modify = "/Mantenimientos/Modificacion/Modifmodulo.jsp";
+    String prime="Plantilla.jsp", ingreso = "usuarioConsultaAdmin.jsp",ver ="usuarioConsulta.jsp", exit = "index.jsp", modify = "/Mantenimientos/Modificacion/Modifmodulo.jsp";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -81,28 +81,40 @@ public class ControllerUsuario extends HttpServlet {
                 log = new LOGIN();
                 log.setUSUARIO(request.getParameter("USUARIO"));
                 log.setPASSWORD(request.getParameter("PASSWORD"));
-                
+
                 DaoUsuario daoUsuario = new DaoUsuario();
                 List<LOGIN> lstLogin = daoUsuario.login(log);
                 Iterator<LOGIN> iteratorLogin = lstLogin.iterator();
                 LOGIN login = null;
-                while (iteratorLogin.hasNext()) {
-                    login = iteratorLogin.next();
-                    if (login.getUSUARIO().equals(request.getParameter("USUARIO")) && login.getPASSWORD().equals(request.getParameter("PASSWORD"))) {
-                    System.out.println(log.getPASSWORD());
-                    System.out.println(log.getUSUARIO());
-                    acceso = exit;
-                } else {
-                    acceso = exit;
-                }
-                }
-
                 
+                if (iteratorLogin.hasNext()) {
+                    login = iteratorLogin.next();
+
+                    if (login.getUSUARIO() != null && login.getPASSWORD() != null ) {
+                        if (login.getUSUARIO().equals(request.getParameter("USUARIO")) && login.getPASSWORD().equals(request.getParameter("PASSWORD")) 
+                                && login.getACTIVO()==1 && login.getRol()==2) {
+                            
+                            log.setEncendido(1);
+                            acceso = prime;
+                            break;
+                        }
+                        if (login.getUSUARIO().equals(request.getParameter("USUARIO")) && login.getPASSWORD().equals(request.getParameter("PASSWORD")) 
+                                && login.getACTIVO()==1 && login.getRol()==1) {
+                            
+                            log.setEncendido(1);
+                            acceso = prime;
+                            break;
+                        }
+                    }
+                }else{
+                    
+                    acceso = exit;
+                }
 
                 break;
 
             case "vista":
-                acceso = ingreso;
+                acceso = ver;
                 break;
             case "eliminar":
                 usuario = new USUARIO();

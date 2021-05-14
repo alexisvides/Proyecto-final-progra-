@@ -29,6 +29,7 @@
                                 <th class="text-center">Activo</th>
                                 <th class="text-center">Creado</th>
                                 <th class="text-center">Actualizado</th>
+                                <th class="text-center">Acciones</th>
                             </tr>
                         </thead>
                          <%
@@ -51,7 +52,13 @@
                                 <td class="text-center"><%= usuario.getACTIVO()%></td>
                                 <td class="text-center"><%= usuario.getFECHA_CREA()%></td>
                                 <td class="text-center"><%= usuario.getFECHA_MOD()%></td>
-                               
+                                <td class="text-center">     
+                                    
+                                    <a href="ControllerUsuario?accion=editar" value=<%= usuario.getID_USUARIO() %>>Editar</a>
+                                    <a href="ControllerUsuario?accion=eliminar" value=<%= usuario.getID_USUARIO() %>>Eliminar</a>
+                                    
+                                    
+                                </td>
                             </tr>
                             <%}%>
                         </tbody>

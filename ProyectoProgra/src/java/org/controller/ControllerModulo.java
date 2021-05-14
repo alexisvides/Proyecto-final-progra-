@@ -23,7 +23,7 @@ import org.models.MODULO;
 @WebServlet(name = "ControllerModulo", urlPatterns = {"/ControllerModulo"})
 public class ControllerModulo extends HttpServlet {
 
-    String ingreso = "index.jsp";
+    String ingreso = "index.jsp", vist="moduloConsulta.jsp";
     String modificar = "";
 
     /**
@@ -73,8 +73,8 @@ public class ControllerModulo extends HttpServlet {
 
         switch (action) {
 
-            case "read":
-                acceso = ingreso;
+            case "vista":
+                acceso = vist;
                 break;
             case "eliminar":
                 modulo = new MODULO();
@@ -91,8 +91,8 @@ public class ControllerModulo extends HttpServlet {
                 modulo.setORDEN(Integer.parseInt(request.getParameter("ORDEN")));
                 modulo.setID_MODULO_PADRE(Integer.parseInt(request.getParameter("ID_MODULO_PADRE")));
                 modulo.setACTIVO(Integer.parseInt(request.getParameter("ACTIVO")));
-                modulo.setFECHA_CREA(ParseFecha(request.getParameter("FECHA_CREA")));
-                modulo.setFECHA_MOD(ParseFecha(request.getParameter("FECHA_MOD")));
+                modulo.setFECHA_CREA(request.getParameter("FECHA_CREA"));
+                modulo.setFECHA_MOD(request.getParameter("FECHA_MOD"));
                 daoModulo.modificar(modulo);
                 acceso = ingreso;
                 break;
@@ -105,8 +105,8 @@ public class ControllerModulo extends HttpServlet {
                 modulo.setORDEN(Integer.parseInt(request.getParameter("ORDEN")));
                 modulo.setID_MODULO_PADRE(Integer.parseInt(request.getParameter("ID_MODULO_PADRE")));
                 modulo.setACTIVO(Integer.parseInt(request.getParameter("ACTIVO")));
-                modulo.setFECHA_CREA(ParseFecha(request.getParameter("FECHA_CREA")));
-                modulo.setFECHA_MOD(ParseFecha(request.getParameter("FECHA_MOD")));
+                modulo.setFECHA_CREA(request.getParameter("FECHA_CREA"));
+                modulo.setFECHA_MOD(request.getParameter("FECHA_MOD"));
                 daoModulo.insertar(modulo);
                 acceso = ingreso;
                 break;
