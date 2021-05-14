@@ -48,8 +48,8 @@ public class DaoUsuario implements CrudUsuario{
                 usua.setPASSWORD(rs.getString("PASSWORD"));
                 usua.setID_ROL(rs.getInt("ID_ROL"));
                 usua.setACTIVO(rs.getInt("ACTIVO"));
-                usua.setFECHA_CREA(rs.getDate("FECHA_CREA"));
-                usua.setFECHA_MOD(rs.getDate("FECHA_MOD"));
+                usua.setFECHA_CREA(rs.getString("FECHA_CREA"));
+                usua.setFECHA_MOD(rs.getString("FECHA_MOD"));
                 usua.setUSUARIO_CREA(rs.getString("USUARIO_CREA"));
                 usua.setUSUARIO_MOD(rs.getString("USUARIO_MOD"));
                 usua.setCODIGO(rs.getInt("CODIGO"));
@@ -75,7 +75,7 @@ public class DaoUsuario implements CrudUsuario{
     @Override
     public boolean insertar(USUARIO user) {
        
-        strSql = "INSERT INTO USUARIO (ID_USUARIO, NOMBRE, APELLIDO, USUARIO, PASSWORD, ID_ROL, ACTIVO, FECHA_CREA, FECHA_MOD, USUARIO_CREA, USUARIO_MOD, CODIGO) VALUES "
+        strSql = "INSERT INTO USUARIO (ID_USUARIO, NOMBRE, APELLIDO, USUARIO, PASSWORD, ID_ROL, ACTIVO, FECHA_CREA, FECHA_MOD, USUARIO_CREA, USUARIO_MOD, CODIGO) VALUES ("
                 + "SELECT  (SELECT ISNULL(MAX(ID_USUARIO),0) + 1 FROM USUARIO), " +                 
                 "'" + user.getNOMBRE()+ "', " +       
                  "'" + user.getAPELLIDO()+ "', " +
@@ -87,8 +87,7 @@ public class DaoUsuario implements CrudUsuario{
                 "'" + user.getFECHA_MOD()+ "', " +
                 "'" + user.getUSUARIO_CREA()+ "', " +
                 "'" + user.getUSUARIO_MOD()+ "', " +
-                "'" + user.getCODIGO()+ "'" 
-                + "WHERE NOT EXISTS(SELECT 1 FROM CLIENTE WHERE NIT = '" + user.getID_USUARIO()+ "');";
+                "'" + user.getCODIGO()+ "')";
         
         try {
             //se abre una conexión hacia la BD
