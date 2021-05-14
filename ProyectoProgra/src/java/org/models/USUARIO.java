@@ -12,18 +12,18 @@ import java.sql.Date;
  * @author jonmi
  */
 public class USUARIO {
-public int ID_USUARIO;
-public String NOMBRE;
-public String APELLIDO;
-public String USUARIO;
-public String PASSWORD;
-public int ID_ROL;
-public int ACTIVO;
-public Date FECHA_CREA;
-public Date FECHA_MOD; 
-public String USUARIO_CREA;
-public String USUARIO_MOD;
-public int CODIGO;
+
+    public int ID_USUARIO;
+    public String NOMBRE;
+    public String APELLIDO;
+    public String USUARIO;
+    public String PASSWORD;
+    public int ID_ROL;
+    public int ACTIVO;
+    public String FECHA_CREA;
+    public String FECHA_MOD;
+
+    public int CODIGO;
 
     public USUARIO() {
     }
@@ -84,36 +84,20 @@ public int CODIGO;
         this.ACTIVO = ACTIVO;
     }
 
-    public Date getFECHA_CREA() {
+    public String getFECHA_CREA() {
         return FECHA_CREA;
     }
 
-    public void setFECHA_CREA(Date FECHA_CREA) {
+    public void setFECHA_CREA(String FECHA_CREA) {
         this.FECHA_CREA = FECHA_CREA;
     }
 
-    public Date getFECHA_MOD() {
+    public String getFECHA_MOD() {
         return FECHA_MOD;
     }
 
-    public void setFECHA_MOD(Date FECHA_MOD) {
+    public void setFECHA_MOD(String FECHA_MOD) {
         this.FECHA_MOD = FECHA_MOD;
-    }
-
-    public String getUSUARIO_CREA() {
-        return USUARIO_CREA;
-    }
-
-    public void setUSUARIO_CREA(String USUARIO_CREA) {
-        this.USUARIO_CREA = USUARIO_CREA;
-    }
-
-    public String getUSUARIO_MOD() {
-        return USUARIO_MOD;
-    }
-
-    public void setUSUARIO_MOD(String USUARIO_MOD) {
-        this.USUARIO_MOD = USUARIO_MOD;
     }
 
     public int getCODIGO() {
@@ -123,9 +107,5 @@ public int CODIGO;
     public void setCODIGO(int CODIGO) {
         this.CODIGO = CODIGO;
     }
-
-    
-
-
 
 }

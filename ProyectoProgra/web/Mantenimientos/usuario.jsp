@@ -1,3 +1,10 @@
+
+
+<%@page import="java.util.Iterator"%>
+<%@page import="org.models.USUARIO"%>
+<%@page import="java.util.List"%>
+<%@page import="org.dao.DaoUsuario"%>
+
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -6,15 +13,18 @@
         <title>Usuarios</title>
     </head>
     <body
-                        <%
-                            Usuario usuario = (Usuario)request.getAttribute("usuario");
-                            String selected = "";
-                            if(usuario.getActivo() == 1){
-                            	selected = "selected";
-                            }
+                       
+                             <%
+                        
+                        DaoUsuario daoUsuario = new  DaoUsuario();
+                        List<USUARIO> lstUsuario = daoUsuario.listar();
+                        Iterator<USUARIO> iteratorUsuario = lstUsuario.iterator();
+                        USUARIO usuario = null;
+                        while (iteratorUsuario.hasNext()){
+                            usuario = iteratorUsuario.next();                        
+                           
                         %>  
         <div class="container">   
-            <h1 class='text-center'>Rol  <%=usuario.getId_usuario() %></h1>         
             <div class="row">
                 <div class="col-sm-4 col-offset-sm-4">
                     <form id="form-work" class="form" name="form-work" action="Usuario" method="get">

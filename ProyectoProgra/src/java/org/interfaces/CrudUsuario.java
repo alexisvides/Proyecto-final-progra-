@@ -7,6 +7,7 @@ package org.interfaces;
 
 import java.util.List;
 import org.models.USUARIO;
+import org.models.LOGIN;
 
 
 /**
@@ -19,5 +20,7 @@ public interface CrudUsuario {
     public boolean insertar(USUARIO usuario);
     public boolean modificar(USUARIO usuario);
     public boolean eliminar(USUARIO usuario);
+
+    public List login(LOGIN usuario);
     public List busqueda(String parametro, String opcion);
 }

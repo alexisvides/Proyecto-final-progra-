@@ -44,18 +44,18 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-user"></i></span>
                                 </div>
-                                <input type="text" class="form-control" placeholder="Usuario">
+                                <input  name="USUARIO" type="text"  class="form-control" placeholder="Usuario">
                             </div>
                             <br>
                             <div class="input-group form-group">
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"><i class="fas fa-key"></i></span>
                                 </div>
-                                <input type="password" class="form-control" placeholder="Contraseña">
+                                <input  name="PASSWORD" type="PASSWORD" class="form-control" placeholder="Contraseña">
                             </div>
                             <br><br><br>
                             <div class="form-group">
-                                <button id="accion" name="accion" value="login" class="btn btn-success btn-lg btn-block info" type="submit" style="background-color: darkgrey">Modificar</button>
+                                <button id="accion" name="accion" value="login" class="btn btn-success btn-lg btn-block info" type="submit" style="background-color: darkgrey">INGRESAR</button>
                             </div>
                         </form>
                     </div>

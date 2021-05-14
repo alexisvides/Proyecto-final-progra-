@@ -10,6 +10,8 @@ import java.io.PrintWriter;
 import java.sql.Date;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Iterator;
+import java.util.List;
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,12 +20,12 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import org.dao.DaoUsuario;
 import org.models.USUARIO;
-
+import org.models.LOGIN;
 
 @WebServlet(name = "ControllerUsuario", urlPatterns = {"/ControllerUsuario"})
 public class ControllerUsuario extends HttpServlet {
 
-    String ingreso = "index.jsp";
+    String ingreso = "usuarioConsulta.jsp", exit = "index.jsp", modify = "/Mantenimientos/Modificacion/Modifmodulo.jsp";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -68,16 +70,35 @@ public class ControllerUsuario extends HttpServlet {
         String action = request.getParameter("accion");
 
         USUARIO usuario = new USUARIO();
+        LOGIN log = new LOGIN();
         DaoUsuario daoUSUARIO = new DaoUsuario();
 
         switch (action) {
 
             case "login":
-                usuario = new USUARIO();
-                usuario.setUSUARIO(request.getParameter("USUARIO"));
-                usuario.setPASSWORD(request.getParameter("PASSWORD"));
-                daoUSUARIO.login(usuario);
-                acceso = ingreso;
+                boolean logeado = false;
+                String us = "";
+                log = new LOGIN();
+                log.setUSUARIO(request.getParameter("USUARIO"));
+                log.setPASSWORD(request.getParameter("PASSWORD"));
+                
+                DaoUsuario daoUsuario = new DaoUsuario();
+                List<LOGIN> lstLogin = daoUsuario.login(log);
+                Iterator<LOGIN> iteratorLogin = lstLogin.iterator();
+                LOGIN login = null;
+                while (iteratorLogin.hasNext()) {
+                    login = iteratorLogin.next();
+                    if (login.getUSUARIO().equals(request.getParameter("USUARIO")) && login.getPASSWORD().equals(request.getParameter("PASSWORD"))) {
+                    System.out.println(log.getPASSWORD());
+                    System.out.println(log.getUSUARIO());
+                    acceso = exit;
+                } else {
+                    acceso = exit;
+                }
+                }
+
+                
+
                 break;
 
             case "vista":
@@ -95,15 +116,13 @@ public class ControllerUsuario extends HttpServlet {
                 usuario.setAPELLIDO(request.getParameter("APELLIDO"));
                 usuario.setUSUARIO(request.getParameter("USUARIO"));
                 usuario.setPASSWORD(request.getParameter("PASSWORD"));
-                usuario.setUSUARIO_CREA(request.getParameter("USUARIO_CREA"));
-                usuario.setUSUARIO_MOD(request.getParameter("USUARIO_MOD"));
                 usuario.setID_ROL(Integer.parseInt(request.getParameter("ID_ROL")));
                 usuario.setCODIGO(Integer.parseInt(request.getParameter("CODIGO")));
                 usuario.setACTIVO(Integer.parseInt(request.getParameter("ACTIVO")));
-                usuario.setFECHA_CREA(ParseFecha(request.getParameter("FECHA_CREA")));
-                usuario.setFECHA_MOD(ParseFecha(request.getParameter("FECHA_MOD")));
+                usuario.setFECHA_CREA(request.getParameter("FECHA_CREA"));
+                usuario.setFECHA_MOD(request.getParameter("FECHA_MOD"));
                 daoUSUARIO.modificar(usuario);
-                acceso = ingreso;
+                acceso = modify;
                 break;
             case "create":
                 usuario = new USUARIO();
@@ -111,13 +130,11 @@ public class ControllerUsuario extends HttpServlet {
                 usuario.setAPELLIDO(request.getParameter("APELLIDO"));
                 usuario.setUSUARIO(request.getParameter("USUARIO"));
                 usuario.setPASSWORD(request.getParameter("PASSWORD"));
-                usuario.setUSUARIO_CREA(request.getParameter("USUARIO_CREA"));
-                usuario.setUSUARIO_MOD(request.getParameter("USUARIO_MOD"));
                 usuario.setID_ROL(Integer.parseInt(request.getParameter("ID_ROL")));
                 usuario.setCODIGO(Integer.parseInt(request.getParameter("CODIGO")));
                 usuario.setACTIVO(Integer.parseInt(request.getParameter("ACTIVO")));
-                usuario.setFECHA_CREA(ParseFecha(request.getParameter("FECHA_CREA")));
-                usuario.setFECHA_MOD(ParseFecha(request.getParameter("FECHA_MOD")));
+                usuario.setFECHA_CREA(request.getParameter("FECHA_CREA"));
+                usuario.setFECHA_MOD(request.getParameter("FECHA_MOD"));
                 acceso = ingreso;
                 break;
 

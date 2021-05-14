@@ -12,6 +12,7 @@ import java.util.logging.Level;
 import java.util.logging.Logger;
 import org.config.Conexion;
 import org.models.USUARIO;
+import org.models.LOGIN;
 import org.interfaces.CrudUsuario;
 
 /**
@@ -31,10 +32,7 @@ public class DaoUsuario implements CrudUsuario{
     //flag para retornar si la sentencia SQL fue satisfactorio o no
     boolean respuesta = false;
     
-    public boolean login(String user,String pass){
-        
-        return true;
-    }
+   
 
     @Override
     public List listar() {
@@ -53,10 +51,8 @@ public class DaoUsuario implements CrudUsuario{
                 usua.setPASSWORD(rs.getString("PASSWORD"));
                 usua.setID_ROL(rs.getInt("ID_ROL"));
                 usua.setACTIVO(rs.getInt("ACTIVO"));
-                usua.setFECHA_CREA(rs.getDate("FECHA_CREA"));
-                usua.setFECHA_MOD(rs.getDate("FECHA_MOD"));
-                usua.setUSUARIO_CREA(rs.getString("USUARIO_CREA"));
-                usua.setUSUARIO_MOD(rs.getString("USUARIO_MOD"));
+                usua.setFECHA_CREA(rs.getString("FECHA_CREA"));
+                usua.setFECHA_MOD(rs.getString("FECHA_MOD"));
                 usua.setCODIGO(rs.getInt("CODIGO"));
                 lstUsuario.add(usua);
             }
@@ -86,13 +82,11 @@ public class DaoUsuario implements CrudUsuario{
                  "'" + user.getAPELLIDO()+ "', " +
                 "'" + user.getUSUARIO()+ "', " +
                 "'" + user.getPASSWORD()+ "', " +
-                "'" + user.getID_ROL()+ "'" + 
-                "'" + user.getACTIVO()+ "'" + 
+                "" + user.getID_ROL()+ "" + 
+                "" + user.getACTIVO()+ "" + 
                 "'" + user.getFECHA_CREA()+ "', " +
                 "'" + user.getFECHA_MOD()+ "', " +
-                "'" + user.getUSUARIO_CREA()+ "', " +
-                "'" + user.getUSUARIO_MOD()+ "', " +
-                "'" + user.getCODIGO()+ "')";
+                "" + user.getCODIGO()+ ")";
         
         try {
             //se abre una conexión hacia la BD
@@ -118,14 +112,11 @@ public class DaoUsuario implements CrudUsuario{
                "APELLIDO = '" + user.getAPELLIDO()+ "',"+
                "USUARIO = '" + user.getUSUARIO()+ "' ,"+
                "PASSWORD = '" + user.getPASSWORD() + "' " + 
-               "ID_ROL = " + user.getPASSWORD() + " " + 
                "ID_ROL = " + user.getID_ROL()+ " " + 
                "ACTIVO = '" + user.getFECHA_CREA()+ "' " + 
                "FECHA_MOD = '" + user.getFECHA_MOD()+ "' " + 
-               "USUARIO_CREA = '" + user.getUSUARIO_CREA()+ "' " + 
-               "USUARIO_MOD = '" + user.getUSUARIO_MOD()+ "' " + 
                "CODIGO = " + user.getCODIGO()+ " "
-               + "WHERE ID_USUARIO = '" + user.getID_USUARIO()+ "'";
+               + "WHERE ID_USUARIO = " + user.getID_USUARIO()+ "";
         
         try {
             //se abre una conexión hacia la BD
@@ -174,6 +165,42 @@ public class DaoUsuario implements CrudUsuario{
     @Override
     public List busqueda(String parametro, String opcion) {
         throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public List login(LOGIN usuario) {
+        
+        ArrayList<LOGIN> lstUsuario = new ArrayList<>();
+        System.out.println(usuario.getUSUARIO()+usuario.getPASSWORD());
+         try {            
+            strSql = "SELECT * FROM USUARIO WHERE USUARIO= '" + usuario.getUSUARIO()+ "' AND PASSWORD='"+usuario.getPASSWORD()+"' ";
+            conexion.open();
+            rs = conexion.executeQuery(strSql);                             
+            
+            while (rs.next()) {
+                LOGIN usua = new LOGIN();
+                usua.setACTIVO(rs.getInt("ACTIVO"));
+                 usua.setUSUARIO(rs.getString("USUARIO"));
+                usua.setPASSWORD(rs.getString("PASSWORD"));
+                System.out.print(rs.getString("PASSWORD"));
+                lstUsuario.add(usua);
+            }
+            rs.close();
+            
+            conexion.close();
+            
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(DaoUsuario.class.getName()).log(Level.SEVERE, null, ex); 
+            return null;
+            
+        } catch(Exception ex){
+            Logger.getLogger(DaoUsuario.class.getName()).log(Level.SEVERE, null, ex);
+            return null;
+            
+        }
+        
+         return lstUsuario;
+        
     }
     
 }

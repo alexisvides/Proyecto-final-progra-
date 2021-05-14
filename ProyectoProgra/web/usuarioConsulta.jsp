@@ -1,3 +1,7 @@
+<%@page import="java.util.Iterator"%>
+<%@page import="org.models.USUARIO"%>
+<%@page import="java.util.List"%>
+<%@page import="org.dao.DaoUsuario"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -6,6 +10,7 @@
         <title>Consulta Usuarios</title>
     </head>
     <body>
+
         <div class="container">      
             <div class="row">
                 <div class="col-sm-12">
@@ -15,6 +20,7 @@
                     <br>
                     <table border="1" width="1" cellspacing="1" class="table table-bordered">
                         <thead>
+                           
                             <tr>
                                 <th class="text-center">ID</th>
                                 <th class="text-center">Nombre</th>
@@ -26,36 +32,37 @@
                                 <th class="text-center">Acciones</th>
                             </tr>
                         </thead>
-                        <%--
-                            DaoUsuario daoUsuario = new DaoUsuario();
-                            List<Usuario> lstUsuario = daoUsuario.listar();
-                            Iterator<Usuario> iteratorUsuario = lstUsuario.iterator();
-                            Usuario usuario = null;
-                            while (iteratorUsuario.hasNext()){
-                                usuario = iteratorUsuario.next();                        
-                                usuario = daoUsuario.busqueda(String.valueOf(rol.getUsuario_crea()));
-                                
-                                
-                        --%>                     
+                         <%
+
+                                DaoUsuario daoUsuario = new DaoUsuario();
+                                List<USUARIO> lstUsuario = daoUsuario.listar();
+                                Iterator<USUARIO> iteratorUsuario = lstUsuario.iterator();
+                                USUARIO usuario = null;
+                                while (iteratorUsuario.hasNext()) {
+                                    usuario = iteratorUsuario.next();
+                                   
+
+                            %>                      
                         <tbody>
                             <tr>
-                                <td class="text-center"><%--= usuario.getId_usuario()--%></td>
-                                <td class="text-center"><%--= usuario.getNombre()--%></td>
-                                <td class="text-center"><%--= usuario.getApellido()--%></td>
-                                <td class="text-center"><%--= usuario.getRol()--%></td>
-                                <td class="text-center"><%--= usuario.getActivo()--%></td>
-                                <td class="text-center"><%--= usuario.getNombre() --%><%--= usuario.getApellido() --%><br><%--= usuario.getFecha_crea()--%></td>
-                            <%-- usuario = daoUsuario.busqueda(String.valueOf(usuario.getUsuario_mod())); --%>
-                                <td class="text-center"><%--= usuario.getNombre() --%><%--= usuario.getApellido() --%><br><%--= usuario.getFecha_mod()--%></td>
+                                <td class="text-center"><%= usuario.getID_USUARIO() %></td>
+                                <td class="text-center"><%= usuario.getNOMBRE()%></td>
+                                <td class="text-center"><%= usuario.getAPELLIDO()%></td>
+                                <td class="text-center"><%= usuario.getID_ROL()%></td>
+                                <td class="text-center"><%= usuario.getACTIVO()%></td>
+                                <td class="text-center"><%= usuario.getFECHA_CREA()%></td>
+                                <td class="text-center"><%= usuario.getFECHA_MOD()%></td>
                                 <td class="text-center">                                
-                                    <a href="ControllerUsuario?accion=editar&id=<%--=usuario.getId_usuario()--%>">Editar</a>
-                                    <a href="ControllerUsuario?accion=delete&id=<%--=usuario.getId_usuario()--%>">Eliminar</a>
+                                    <a href="ControllerUsuario?accion=editar" value=<%= usuario.getID_USUARIO() %>>Editar</a>
+                                    <a href="ControllerUsuario?accion=eliminar" value=<%= usuario.getID_USUARIO() %>>Eliminar</a>
+                                    
+                                    
                                 </td>
                             </tr>
                             <%}%>
                         </tbody>
                     </table>
-                    
+
                 </div>
             </div>
         </div>
