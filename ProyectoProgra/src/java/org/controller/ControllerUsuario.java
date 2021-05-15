@@ -112,7 +112,9 @@ public class ControllerUsuario extends HttpServlet {
                 }
 
                 break;
-
+            case "index":
+                acceso = prime;            
+                break;
             case "vista":
                 acceso = ver;
                 break;

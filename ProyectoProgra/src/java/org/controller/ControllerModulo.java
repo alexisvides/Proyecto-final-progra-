@@ -23,7 +23,7 @@ import org.models.MODULO;
 @WebServlet(name = "ControllerModulo", urlPatterns = {"/ControllerModulo"})
 public class ControllerModulo extends HttpServlet {
 
-    String ingreso = "index.jsp", vist="moduloConsulta.jsp";
+    String prime="Plantilla.jsp", ingreso = "index.jsp", vista="moduloConsulta.jsp";
     String modificar = "";
 
     /**
@@ -74,7 +74,10 @@ public class ControllerModulo extends HttpServlet {
         switch (action) {
 
             case "vista":
-                acceso = vist;
+                acceso = vista;
+                break;
+            case "index":
+                acceso = prime;            
                 break;
             case "eliminar":
                 modulo = new MODULO();
