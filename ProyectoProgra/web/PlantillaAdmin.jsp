@@ -33,7 +33,7 @@
                             <a class="nav-link active" href="ControllerUsuario?accion=vista">Usuarios</a>
                         </li>
                         <li style="float: left;" title="Administrar roles" class="nav-item">
-                            <a class="nav-link active" href="ControllerUsuario?accion=cerrar">Cerrar Sesión</a>
+                            <a class="nav-link active" href="ControllerUsuario?accion=index">Cerrar Sesión</a>
                         </li>
                     </ul>
                 </div>

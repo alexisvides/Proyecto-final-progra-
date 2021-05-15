@@ -97,14 +97,14 @@ public class ControllerUsuario extends HttpServlet {
 
                     if (login.getUSUARIO() != null && login.getPASSWORD() != null ) {
                         if (login.getUSUARIO().equals(request.getParameter("USUARIO")) && login.getPASSWORD().equals(request.getParameter("PASSWORD")) 
-                                && login.getACTIVO()==1 && login.getRol()==2) {
+                                && login.getACTIVO()==1 && login.getRol()==3) {
                             
                             log.setEncendido(1);
                             acceso = prime2;
                             break;
                         }
                         if (login.getUSUARIO().equals(request.getParameter("USUARIO")) && login.getPASSWORD().equals(request.getParameter("PASSWORD")) 
-                                && login.getACTIVO()==1  && login.getRol()==1) {
+                                && login.getACTIVO()==1  && login.getRol()==2) {
                             
                             log.setEncendido(1);
                             acceso = prime1;
@@ -118,7 +118,7 @@ public class ControllerUsuario extends HttpServlet {
 
                 break;
             case "index":
-                acceso = prime1;            
+                acceso = exit;            
                 break;
             case "vista":
                 acceso = vista1;

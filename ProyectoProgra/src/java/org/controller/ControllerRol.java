@@ -60,7 +60,8 @@ public class ControllerRol extends HttpServlet {
                 break;
             case "eliminar":
                 rol = new ROL();
-                rol.setID_ROL(Integer.parseInt(request.getParameter("id")));
+                int rl=0;
+                rl =(Integer.parseInt(request.getParameter("id")));
                 daoRol.eliminar(rol);
                 acceso = vista1;
                 break;
