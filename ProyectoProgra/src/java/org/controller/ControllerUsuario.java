@@ -99,7 +99,7 @@ public class ControllerUsuario extends HttpServlet {
                             break;
                         }
                         if (login.getUSUARIO().equals(request.getParameter("USUARIO")) && login.getPASSWORD().equals(request.getParameter("PASSWORD")) 
-                                && login.getACTIVO()==1 && login.getRol()==1) {
+                                && login.getACTIVO()==1  && login.getRol()==1) {
                             
                             log.setEncendido(1);
                             acceso = prime;
@@ -118,9 +118,11 @@ public class ControllerUsuario extends HttpServlet {
                 break;
             case "eliminar":
                 usuario = new USUARIO();
-                usuario.setID_USUARIO(Integer.parseInt(request.getParameter("ID_USUARIO")));
+                int id = 0;
+                id = Integer.parseInt(request.getParameter("id"));
+                usuario.setID_USUARIO(id);
                 daoUSUARIO.eliminar(usuario);
-                acceso = ingreso;
+                acceso = ver;
                 break;
             case "modificar":
                 usuario = new USUARIO();
