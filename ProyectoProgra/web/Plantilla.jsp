@@ -10,49 +10,31 @@
     <head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
         <title>JSP Page</title>
-        
-        <link href="Styles/Site.css" rel="stylesheet" type="text/css"/>
-        <link href="Content/bootstrap.css" rel="stylesheet" type="text/css"/>
-       <script src="Scripts/jquery-1.9.1.min.js" type="text/javascript"></script>
-       <script src="Scripts/bootstrap.min.js" type="text/javascript"></script>
     </head>
     
     <body>
-        <form id="Form1" >
-        <nav class="navbar navbar-default" role="navigation"  >
+        <nav class="navbar navbar-expand-lg navbar-light  ">
             <%--a class="navbar-brand title" href="Controller?accion=inicio"><font color="black">Inicio</font></a--%>
-                <div class="container">
-                    <div class="navbar-header">
-                        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                            <span class="icon-bar"></span>
-                        </button>                    
-                    </div>
-            <div class="navbar-header">
-                <ul class="navbar-nav ml-auto">
-                    <li title="Administrar roles" class="navbar-brand">
-                        <a class="nav-link active" href="ControllerRoles?accion=vista">Roles</a><br/>
-                    </li>
-                    <li class="navbar-brand">
-                        <a class="nav-link active" href="ControllerModulo?accion=vista">Modulo</a>
-                    </li> 
+            
+            <div class="collapse navbar-collapse">
 
-                    <li class="navbar-brand">
+                <ul class="navbar-nav ml-auto">
+                    <li style="float: left;" title="Administrar roles" class="nav-item">
+                        <a class="nav-link active" href="ControllerRol?accion=vista">Roles</a>
+                        <a class="nav-link active" href="ControllerModulo?accion=vista">Modulo</a>
                         <a class="nav-link active" href="ControllerUsuario?accion=vista">Usuarios</a>
-                    </li>                 
-                    <li  class="navbar-brand">
-                        <a class="nav-link active" href="ControllerUsuario?accion=cerrar"> Cerrar Sesión</a>
+                        <a class="nav-link active" href="ControllerUsuario?accion=cerrar">Cerrar Sesión</a>
+                        
+
                     </li>
                 </ul>
+
             </div>
-            </div>
-                
         </nav>
-            <div class="container body-content">
-                <div style=" float:right;">                    
-                </div>
-            <footer>
-            </footer>
     </body>
+    <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+        <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+        <script src="//code.jquery.com/jquery-1.11.1.min.js"></script>     
+        <script src="//kit.fontawesome.com/ab9769543f.js" crossorigin="anonymous"></script>
+    
 </html>
