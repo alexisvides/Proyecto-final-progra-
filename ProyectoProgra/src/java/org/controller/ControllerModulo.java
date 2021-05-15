@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package org.controller;
 
 import java.io.IOException;
@@ -23,7 +18,7 @@ import org.models.MODULO;
 @WebServlet(name = "ControllerModulo", urlPatterns = {"/ControllerModulo"})
 public class ControllerModulo extends HttpServlet {
 
-    String prime="Plantilla.jsp", ingreso = "index.jsp", vista="moduloConsulta.jsp";
+    String prime="Plantilla.jsp", ingreso = "index.jsp", vista="moduloConsulta.jsp", agregar = "moduloIngreso.jsp";
     String modificar = "";
 
     /**
@@ -99,19 +94,19 @@ public class ControllerModulo extends HttpServlet {
                 daoModulo.modificar(modulo);
                 acceso = ingreso;
                 break;
-            case "create":
+            case "agregar": 
+                acceso = agregar;
+                break;
+            case "add":
                 modulo = new MODULO();
-                modulo.setNOMBRE(request.getParameter("NOMBRE"));
-                modulo.setDESCRIPCION(request.getParameter("DESCRIPCION"));
-                modulo.setPATH(request.getParameter("PATH"));
-                modulo.setNIVEL(Integer.parseInt(request.getParameter("NIVEL")));
-                modulo.setORDEN(Integer.parseInt(request.getParameter("ORDEN")));
-                modulo.setID_MODULO_PADRE(Integer.parseInt(request.getParameter("ID_MODULO_PADRE")));
-                modulo.setACTIVO(Integer.parseInt(request.getParameter("ACTIVO")));
-                modulo.setFECHA_CREA(request.getParameter("FECHA_CREA"));
-                modulo.setFECHA_MOD(request.getParameter("FECHA_MOD"));
+                modulo.setNOMBRE(request.getParameter("nombre"));
+                modulo.setDESCRIPCION(request.getParameter("descripcion"));
+                modulo.setID_MODULO_PADRE(Integer.parseInt(request.getParameter("modulo_padre")));
+                modulo.setACTIVO(Integer.parseInt(request.getParameter("activo")));
+                modulo.setUSUARIO_CREA(request.getParameter("usuario_crea"));
+                modulo.setUSUARIO_MOD(request.getParameter("usuario_mod"));
                 daoModulo.insertar(modulo);
-                acceso = ingreso;
+                acceso = vista;
                 break;
 
         }

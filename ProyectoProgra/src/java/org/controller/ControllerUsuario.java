@@ -25,7 +25,7 @@ import org.models.LOGIN;
 @WebServlet(name = "ControllerUsuario", urlPatterns = {"/ControllerUsuario"})
 public class ControllerUsuario extends HttpServlet {
 
-    String prime="Plantilla.jsp", ingreso = "usuarioConsultaAdmin.jsp",ver ="usuarioConsulta.jsp", exit = "index.jsp", modify = "/Mantenimientos/Modificacion/Modifmodulo.jsp";
+    String agregar = "usuarioIngreso.jsp", prime="Plantilla.jsp", ingreso = "usuarioConsultaAdmin.jsp", vista ="usuarioConsulta.jsp", exit = "index.jsp", modify = "/Mantenimientos/Modificacion/Modifmodulo.jsp";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -116,7 +116,7 @@ public class ControllerUsuario extends HttpServlet {
                 acceso = prime;            
                 break;
             case "vista":
-                acceso = ver;
+                acceso = vista;
                 break;
             case "eliminar":
                 usuario = new USUARIO();
@@ -124,7 +124,7 @@ public class ControllerUsuario extends HttpServlet {
                 id = Integer.parseInt(request.getParameter("id"));
                 usuario.setID_USUARIO(id);
                 daoUSUARIO.eliminar(usuario);
-                acceso = ver;
+                acceso = vista;
                 break;
             case "modificar":
                 usuario = new USUARIO();
@@ -140,18 +140,20 @@ public class ControllerUsuario extends HttpServlet {
                 daoUSUARIO.modificar(usuario);
                 acceso = modify;
                 break;
-            case "create":
+            case "agregar": 
+                acceso = agregar;
+                break;
+            case "add":
                 usuario = new USUARIO();
-                usuario.setNOMBRE(request.getParameter("NOMBRE"));
-                usuario.setAPELLIDO(request.getParameter("APELLIDO"));
-                usuario.setUSUARIO(request.getParameter("USUARIO"));
-                usuario.setPASSWORD(request.getParameter("PASSWORD"));
-                usuario.setID_ROL(Integer.parseInt(request.getParameter("ID_ROL")));
-                usuario.setCODIGO(Integer.parseInt(request.getParameter("CODIGO")));
-                usuario.setACTIVO(Integer.parseInt(request.getParameter("ACTIVO")));
-                usuario.setFECHA_CREA(request.getParameter("FECHA_CREA"));
-                usuario.setFECHA_MOD(request.getParameter("FECHA_MOD"));
-                acceso = ingreso;
+                usuario.setNOMBRE(request.getParameter("nombre"));
+                usuario.setAPELLIDO(request.getParameter("apellido"));
+                usuario.setUSUARIO(request.getParameter("usuario"));
+                usuario.setPASSWORD(request.getParameter("pass"));
+                usuario.setID_ROL(Integer.parseInt(request.getParameter("id_rol")));
+                usuario.setACTIVO(Integer.parseInt(request.getParameter("activo")));
+                usuario.setCODIGO(Integer.parseInt(request.getParameter("codigo")));
+                daoUSUARIO.insertar(usuario);
+                acceso = vista;
                 break;
 
         }
