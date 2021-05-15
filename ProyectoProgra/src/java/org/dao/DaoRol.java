@@ -20,8 +20,6 @@ import org.models.ROL;
  */
 public class DaoRol implements CrudRol{
     
-    //Se crea un objeto publico del Cliente
-    ROL rol = new ROL();
     //Variable para crear las sentencias SQL
     String strSql =  "";
     //Se crea un obejto de tipo conexión para manejar la persistencia hacia la base de datos
@@ -35,7 +33,7 @@ public class DaoRol implements CrudRol{
     public List listar() {
          ArrayList<ROL> lstRol = new ArrayList<>();
          try {            
-            strSql =    "SELECT * FROM ROL";
+            strSql = "SELECT * FROM ROL";
             conexion.open();
             rs = conexion.executeQuery(strSql);                             
             
