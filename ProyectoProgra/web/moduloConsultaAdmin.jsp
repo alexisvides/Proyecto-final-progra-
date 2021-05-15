@@ -4,6 +4,7 @@
 <%@page import="org.dao.DaoUsuario"%>
 <%@page import="org.dao.DaoModulo"%>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
+ <jsp:include page="PlantillaAdmin.jsp"/>
 <!DOCTYPE html>
 <html>
     <head>
