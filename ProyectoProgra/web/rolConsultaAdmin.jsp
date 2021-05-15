@@ -17,7 +17,7 @@
             <div class="row">
                 <div class="col-sm-12">
                     <h1 class="text-center">Roles</h1>
-                    <a class="btn btn-primary pull-right" style="color:white!important;" href="Roles?accion=nuevo"  ><b><i class="glyphicon glyphicon-plus"></i> Agregar Nuevo</b></a>
+                    <a class="btn btn-primary pull-right" style="color:white!important;" href="ControllerRol?accion=agregar"  ><b><i class="glyphicon glyphicon-plus"></i> Agregar Nuevo</b></a>
                     <br>
                     <br>
                     <table border="1" width="1" cellspacing="1" class="table table-bordered">
@@ -50,7 +50,7 @@
                                 <td class="text-center"><%= rol.getUSUARIO_CREA() %></td>
                                 <td class="text-center"><%= rol.getUSUARIO_MOD()%></td>
                                 <td class="text-center">                                
-                                    <a href="ControllerRol?accion=editar&id=<%=rol.getID_ROL()%>">Editar</a>
+                                    <a href="ControllerRol?accion=editar&id=<%=rol.getID_ROL() %>">Editar</a>
                                     <a href="ControllerRol?accion=eliminar&id=<%=rol.getID_ROL()%>">Eliminar</a>
                                 </td>
                             </tr>

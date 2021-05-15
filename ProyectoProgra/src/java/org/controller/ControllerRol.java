@@ -18,9 +18,9 @@ import org.models.ROL;
 
 @WebServlet(name = "ControllerRol", urlPatterns = {"/ControllerRol"})
 public class ControllerRol extends HttpServlet {
-    
-    String prime="Plantilla.jsp",  vista1= "rolConsultaAdmin.jsp", ingreso="rolConsulta.jsp", agregar = "rolIngreso.jsp";
-    String modificar = "";
+
+    String prime = "Plantilla.jsp", vista1 = "rolConsultaAdmin.jsp", ingreso = "rolConsulta.jsp", agregar = "rolIngreso.jsp";
+    String modificar = "", modify = "/Mantenimientos/Modificacion/ModRol.jsp";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -30,7 +30,7 @@ public class ControllerRol extends HttpServlet {
             out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
-            out.println("<title>Servlet ControllerRol</title>");            
+            out.println("<title>Servlet ControllerRol</title>");
             out.println("</head>");
             out.println("<body>");
             out.println("<h1>Servlet ControllerRol at " + request.getContextPath() + "</h1>");
@@ -56,7 +56,7 @@ public class ControllerRol extends HttpServlet {
                 acceso = vista1;
                 break;
             case "index":
-                acceso = prime;            
+                acceso = prime;
                 break;
             case "eliminar":
                 rol = new ROL();
@@ -64,17 +64,22 @@ public class ControllerRol extends HttpServlet {
                 daoRol.eliminar(rol);
                 acceso = vista1;
                 break;
+            case "editar":
+                request.setAttribute("id_Cliente", request.getParameter("id"));
+                acceso = modify;
+                break;
             case "modificar":
                 rol = new ROL();
-                rol.setNOMBRE(request.getParameter("NOMBRE"));
-                rol.setDESCRIPCION(request.getParameter("DESCRIPCION"));
-                rol.setUSUARIO_CREA(request.getParameter("USUARIO_CREA"));
-                rol.setUSUARIO_MOD(request.getParameter("USUARIO_MOD"));
-                
+                rol.setNOMBRE(request.getParameter("nombre"));
+                rol.setDESCRIPCION(request.getParameter("descripcion"));
+                rol.setUSUARIO_CREA(request.getParameter("usuario_crea"));
+                rol.setUSUARIO_MOD(request.getParameter("usuario_mod"));
+                rol.setID_ROL(Integer.parseInt(request.getParameter("id1")));
+
                 daoRol.modificar(rol);
-                acceso = ingreso;
+                acceso = vista1;
                 break;
-            case "agregar": 
+            case "agregar":
                 acceso = agregar;
                 break;
             case "add":
@@ -83,7 +88,7 @@ public class ControllerRol extends HttpServlet {
                 rol.setDESCRIPCION(request.getParameter("descripcion"));
                 rol.setUSUARIO_CREA(request.getParameter("usuario_crea"));
                 rol.setUSUARIO_MOD(request.getParameter("usuario_mod"));
-                
+
                 daoRol.insertar(rol);
                 acceso = vista1;
                 break;

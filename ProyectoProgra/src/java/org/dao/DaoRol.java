@@ -28,6 +28,7 @@ public class DaoRol implements CrudRol{
     ResultSet rs = null;
     //flag para retornar si la sentencia SQL fue satisfactorio o no
     boolean respuesta = false;
+    ROL rl = null;
 
     @Override
     public List listar() {
@@ -60,7 +61,31 @@ public class DaoRol implements CrudRol{
 
     @Override
     public ROL list(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        
+     try {            
+            strSql = "SELECT * FROM ROL WHERE ID_ROL="+id+"";
+            conexion.open();
+            rs = conexion.executeQuery(strSql);                             
+            
+            while (rs.next()) {
+                ROL rol = new ROL();
+                rl.setID_ROL(rs.getInt("ID_ROL"));
+                rl.setNOMBRE(rs.getString("NOMBRE"));
+                rl.setDESCRIPCION(rs.getString("DESCRIPCION"));
+                rl.setUSUARIO_CREA(rs.getString("USUARIO_CREA"));
+                rl.setUSUARIO_MOD(rs.getString("USUARIO_MOD"));
+                
+            }
+            rs.close();
+            conexion.close();
+            
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(DaoModulo.class.getName()).log(Level.SEVERE, null, ex);            
+        } catch(Exception ex){
+            Logger.getLogger(DaoModulo.class.getName()).log(Level.SEVERE, null, ex);            
+        }
+        
+         return rl;
     }
     
     @Override
@@ -96,7 +121,7 @@ public class DaoRol implements CrudRol{
         strSql = "UPDATE  ROL SET NOMBRE = '" + rol.getNOMBRE()+ "', "
                 + "DESCRIPCION = '" + rol.getDESCRIPCION()+ "', "
                 + "USUARIO_CREA = '" + rol.getUSUARIO_CREA()+ "', "
-                + "USUARIO_MOD = '" + rol.getUSUARIO_MOD()+ "', "
+                + "USUARIO_MOD = '" + rol.getUSUARIO_MOD()+ "' "
                 + "WHERE ID_ROL = " + rol.getID_ROL()+ "";
 
         try {
