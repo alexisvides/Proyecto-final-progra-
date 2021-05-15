@@ -50,8 +50,6 @@ public class DaoUsuario implements CrudUsuario {
                 usua.setPASSWORD(rs.getString("PASSWORD"));
                 usua.setID_ROL(rs.getInt("ID_ROL"));
                 usua.setACTIVO(rs.getInt("ACTIVO"));
-                usua.setFECHA_CREA(rs.getString("FECHA_CREA"));
-                usua.setFECHA_MOD(rs.getString("FECHA_MOD"));
                 usua.setCODIGO(rs.getInt("CODIGO"));
                 lstUsuario.add(usua);
             }
@@ -75,16 +73,14 @@ public class DaoUsuario implements CrudUsuario {
     @Override
     public boolean insertar(USUARIO user) {
 
-        strSql = "INSERT INTO USUARIO (ID_USUARIO, NOMBRE, APELLIDO, USUARIO, PASSWORD, ID_ROL, ACTIVO, FECHA_CREA, FECHA_MOD, USUARIO_CREA, USUARIO_MOD, CODIGO) VALUES ("
+        strSql = "INSERT INTO USUARIO (ID_USUARIO, NOMBRE, APELLIDO, USUARIO, PASSWORD, ID_ROL, ACTIVO, USUARIO_CREA, USUARIO_MOD, CODIGO) VALUES ("
                 + "SELECT  (SELECT ISNULL(MAX(ID_USUARIO),0) + 1 FROM USUARIO), "
                 + "'" + user.getNOMBRE() + "', "
                 + "'" + user.getAPELLIDO() + "', "
                 + "'" + user.getUSUARIO() + "', "
                 + "'" + user.getPASSWORD() + "', "
-                + "" + user.getID_ROL() + ""
-                + "" + user.getACTIVO() + ""
-                + "'" + user.getFECHA_CREA() + "', "
-                + "'" + user.getFECHA_MOD() + "', "
+                + "" + user.getID_ROL() + ", "
+                + "" + user.getACTIVO() + ", "
                 + "" + user.getCODIGO() + ")";
 
         try {
@@ -110,10 +106,8 @@ public class DaoUsuario implements CrudUsuario {
         strSql = "UPDATE USUARIO SET NOMBRE = '" + user.getNOMBRE() + "', "
                 + "APELLIDO = '" + user.getAPELLIDO() + "',"
                 + "USUARIO = '" + user.getUSUARIO() + "' ,"
-                + "PASSWORD = '" + user.getPASSWORD() + "' "
-                + "ID_ROL = " + user.getID_ROL() + " "
-                + "ACTIVO = '" + user.getFECHA_CREA() + "' "
-                + "FECHA_MOD = '" + user.getFECHA_MOD() + "' "
+                + "PASSWORD = '" + user.getPASSWORD() + "', "
+                + "ID_ROL = " + user.getID_ROL() + ", "
                 + "CODIGO = " + user.getCODIGO() + " "
                 + "WHERE ID_USUARIO = " + user.getID_USUARIO() + "";
 
@@ -139,7 +133,7 @@ public class DaoUsuario implements CrudUsuario {
     @Override
     public boolean eliminar(USUARIO user) {
 
-        strSql = "DELETE FROM USUARIO WHERE ID_USUARIO = '" + user.getID_USUARIO() + "'";
+        strSql = "DELETE FROM USUARIO WHERE ID_USUARIO = " + user.getID_USUARIO() + "";
 
         try {
             //se abre una conexión hacia la BD
