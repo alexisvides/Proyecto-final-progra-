@@ -67,7 +67,7 @@ public class DaoRol implements CrudRol{
     public boolean insertar(ROL rol) {
        
         strSql = "INSERT INTO ROL (ID_ROL, NOMBRE, DESCRIPCION, USUARIO_CREA, USUARIO_MOD) VALUES ("
-                + "SELECT  (SELECT ISNULL(MAX(ID_ROL),0) + 1 FROM ROL), " +                 
+                + "(SELECT ISNULL(MAX(ID_ROL),0) + 1 FROM ROL), " +                 
                 "'" + rol.getNOMBRE()+ "', " +       
                 "'" + rol.getDESCRIPCION()+ "', " +
                 "'" + rol.getUSUARIO_CREA()+ "', " +
