@@ -55,14 +55,14 @@ public class DaoModulo implements CrudModulo{
 
     @Override
     public boolean insertar(MODULO modulo) {
-        strSql = "INSERT INTO MODULO (ID_MODULO, NOMBRE, DESCRIPCION, ID_MODULO_PADRE, "
-                + "USUARIO_CREA, USUARIO_MOD) VALUES("
-                + "SELECT  (SELECT ISNULL(MAX(ID_MODULO),0) + 1 FROM MODULO), " +
+        strSql = "INSERT INTO MODULO (ID_MODULO, NOMBRE, DESCRIPCION, ID_MODULO_PADRE, ACTIVO, USUARIO_CREA, USUARIO_MOD) VALUES("
+                + "(SELECT ISNULL(MAX(ID_MODULO),0) + 1 FROM MODULO), " +
                 "'" + modulo.getNOMBRE()+ "', " +
                 "'" + modulo.getDESCRIPCION()+ "', " +
                 "" + modulo.getID_MODULO_PADRE()+ ", " + 
+                "" + modulo.getACTIVO()+ ", " + 
                 "'" + modulo.getUSUARIO_CREA()+ "', " +
-                "'" + modulo.getUSUARIO_MOD()+ "', " ;
+                "'" + modulo.getUSUARIO_MOD()+ "' )" ;
         
         try{
             //se abre una conexión hacia la BD

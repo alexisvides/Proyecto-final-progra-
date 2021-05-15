@@ -73,8 +73,8 @@ public class DaoUsuario implements CrudUsuario {
     @Override
     public boolean insertar(USUARIO user) {
 
-        strSql = "INSERT INTO USUARIO (ID_USUARIO, NOMBRE, APELLIDO, USUARIO, PASSWORD, ID_ROL, ACTIVO, USUARIO_CREA, USUARIO_MOD, CODIGO) VALUES ("
-                + "SELECT  (SELECT ISNULL(MAX(ID_USUARIO),0) + 1 FROM USUARIO), "
+        strSql = "INSERT INTO USUARIO (ID_USUARIO, NOMBRE, APELLIDO, USUARIO, PASSWORD, ID_ROL, ACTIVO, CODIGO) VALUES ("
+                + "(SELECT ISNULL(MAX(ID_USUARIO),0) + 1 FROM USUARIO), "
                 + "'" + user.getNOMBRE() + "', "
                 + "'" + user.getAPELLIDO() + "', "
                 + "'" + user.getUSUARIO() + "', "
