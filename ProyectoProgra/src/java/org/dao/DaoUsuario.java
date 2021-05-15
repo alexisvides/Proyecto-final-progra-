@@ -67,7 +67,33 @@ public class DaoUsuario implements CrudUsuario {
 
     @Override
     public USUARIO list(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {
+            strSql = "SELECT * FROM USUARIO WHERE ID_USUARIO ="+id+"";
+            conexion.open();
+            rs = conexion.executeQuery(strSql);
+
+            while (rs.next()) {
+                
+                persona.setID_USUARIO(rs.getInt("ID_USUARIO"));
+                persona.setNOMBRE(rs.getString("NOMBRE"));
+                persona.setAPELLIDO(rs.getString("APELLIDO"));
+                persona.setUSUARIO(rs.getString("USUARIO"));
+                persona.setPASSWORD(rs.getString("PASSWORD"));
+                persona.setID_ROL(rs.getInt("ID_ROL"));
+                persona.setACTIVO(rs.getInt("ACTIVO"));
+                persona.setCODIGO(rs.getInt("CODIGO"));
+            }
+            rs.close();
+            conexion.close();
+
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(DaoUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (Exception ex) {
+            Logger.getLogger(DaoUsuario.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return persona;
+        
     }
 
     @Override

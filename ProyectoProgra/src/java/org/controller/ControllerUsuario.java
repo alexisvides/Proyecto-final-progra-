@@ -26,7 +26,7 @@ import org.models.LOGIN;
 public class ControllerUsuario extends HttpServlet {
 
     String agregar = "usuarioIngreso.jsp", prime2="Plantilla.jsp",prime1="PlantillaAdmin.jsp", ingreso = "usuarioConsulta.jsp",
-            vista1 ="usuarioConsultaAdmin.jsp", exit = "index.jsp", modify = "/Mantenimientos/Modificacion/ModificarUsuario.jsp";
+            vista1 ="usuarioConsultaAdmin.jsp", exit = "index.jsp", modify = "/Mantenimientos/Modificacion/ModUsuario.jsp";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -131,19 +131,22 @@ public class ControllerUsuario extends HttpServlet {
                 daoUSUARIO.eliminar(usuario);
                 acceso = vista1;
                 break;
+            case "editar":
+                request.setAttribute("id_Cliente",request.getParameter("id"));
+                acceso = modify;
+                break;
             case "modificar":
                 usuario = new USUARIO();
-                usuario.setNOMBRE(request.getParameter("NOMBRE"));
-                usuario.setAPELLIDO(request.getParameter("APELLIDO"));
-                usuario.setUSUARIO(request.getParameter("USUARIO"));
-                usuario.setPASSWORD(request.getParameter("PASSWORD"));
-                usuario.setID_ROL(Integer.parseInt(request.getParameter("ID_ROL")));
-                usuario.setCODIGO(Integer.parseInt(request.getParameter("CODIGO")));
-                usuario.setACTIVO(Integer.parseInt(request.getParameter("ACTIVO")));
-                usuario.setFECHA_CREA(request.getParameter("FECHA_CREA"));
-                usuario.setFECHA_MOD(request.getParameter("FECHA_MOD"));
+                usuario.setNOMBRE(request.getParameter("nombre"));
+                usuario.setAPELLIDO(request.getParameter("apellido"));
+                usuario.setUSUARIO(request.getParameter("usuario"));
+                usuario.setPASSWORD(request.getParameter("pass"));
+                usuario.setID_ROL(Integer.parseInt(request.getParameter("id_rol")));
+                usuario.setACTIVO(Integer.parseInt(request.getParameter("activo")));
+                usuario.setID_USUARIO(Integer.parseInt(request.getParameter("id1")));
+                usuario.setCODIGO(Integer.parseInt(request.getParameter("codigo")));
                 daoUSUARIO.modificar(usuario);
-                acceso = modify;
+                acceso = vista1;
                 break;
             case "agregar": 
                 acceso = agregar;
