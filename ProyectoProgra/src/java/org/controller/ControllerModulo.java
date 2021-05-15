@@ -19,7 +19,7 @@ import org.models.MODULO;
 public class ControllerModulo extends HttpServlet {
 
     String prime="Plantilla.jsp",  vista1= "moduloConsultaAdmin.jsp", ingreso="moduloConsulta.jsp", agregar = "moduloIngreso.jsp";
-    String modificar = "";
+    String modificar = "", modify = "/Mantenimientos/Modificacion/ModificarModulo.jsp";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -83,19 +83,20 @@ public class ControllerModulo extends HttpServlet {
                 daoModulo.eliminar(modulo);
                 acceso = vista1;
                 break;
+            case "editar":
+                request.setAttribute("id_Cliente",request.getParameter("id"));
+                acceso = modify;
+                break;
             case "modificar":
                 modulo = new MODULO();
-                modulo.setNOMBRE(request.getParameter("NOMBRE"));
-                modulo.setDESCRIPCION(request.getParameter("DESCRIPCION"));
-                modulo.setPATH(request.getParameter("PATH"));
-                modulo.setNIVEL(Integer.parseInt(request.getParameter("NIVEL")));
-                modulo.setORDEN(Integer.parseInt(request.getParameter("ORDEN")));
-                modulo.setID_MODULO_PADRE(Integer.parseInt(request.getParameter("ID_MODULO_PADRE")));
-                modulo.setACTIVO(Integer.parseInt(request.getParameter("ACTIVO")));
-                modulo.setFECHA_CREA(request.getParameter("FECHA_CREA"));
-                modulo.setFECHA_MOD(request.getParameter("FECHA_MOD"));
+                modulo.setNOMBRE(request.getParameter("nombre"));
+                modulo.setDESCRIPCION(request.getParameter("descripcion"));
+                modulo.setID_MODULO_PADRE(Integer.parseInt(request.getParameter("modulo_padre")));
+                modulo.setID_MODULO(Integer.parseInt(request.getParameter("id1")));
+                modulo.setUSUARIO_CREA(request.getParameter("usuario_crea"));
+                modulo.setUSUARIO_MOD(request.getParameter("usuario_mod"));
                 daoModulo.modificar(modulo);
-                acceso = ingreso;
+                acceso = vista1;
                 break;
             case "agregar": 
                 acceso = agregar;

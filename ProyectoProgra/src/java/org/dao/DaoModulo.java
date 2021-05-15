@@ -50,7 +50,32 @@ public class DaoModulo implements CrudModulo{
 
     @Override
     public MODULO list(int id) {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+        try {            
+            strSql = "SELECT * FROM MODULO WHERE ID_MODULO ="+id+"";
+            conexion.open();
+            rs = conexion.executeQuery(strSql);                             
+            
+            while (rs.next()) {
+                mod.setID_MODULO(rs.getInt("ID_MODULO"));                
+                mod.setNOMBRE(rs.getString("NOMBRE"));
+                mod.setDESCRIPCION(rs.getString("DESCRIPCION"));
+                mod.setID_MODULO_PADRE(rs.getInt("ID_MODULO_PADRE"));
+                mod.setUSUARIO_CREA(rs.getString("USUARIO_CREA"));
+                mod.setUSUARIO_MOD(rs.getString("USUARIO_MOD"));
+                                
+            }
+            rs.close();
+            conexion.close();
+            
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(DaoModulo.class.getName()).log(Level.SEVERE, null, ex);            
+        } catch(Exception ex){
+            Logger.getLogger(DaoModulo.class.getName()).log(Level.SEVERE, null, ex);            
+        }
+        
+         return mod;
+    
+    
     }
 
     @Override
@@ -87,7 +112,7 @@ public class DaoModulo implements CrudModulo{
                  "DESCRIPCION = '" + modulo.getDESCRIPCION()+ "', "+
                  "ID_MODULO_PADRE = " + modulo.getID_MODULO_PADRE()+ ", " +
                  "USUARIO_CREA = '" + modulo.getUSUARIO_CREA()+ "', "+
-                 "USUARIO_MOD = '" + modulo.getUSUARIO_MOD()+ "', "+
+                 "USUARIO_MOD = '" + modulo.getUSUARIO_MOD()+ "' "+
                  "WHERE ID_MODULO = " + modulo.getID_MODULO()+ "";
         
         try {
