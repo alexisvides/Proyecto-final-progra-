@@ -3,7 +3,7 @@
 <%@page import="java.util.List"%>
 <%@page import="org.dao.DaoUsuario"%>
 <%@page import="org.dao.DaoModulo"%>
-<jsp:include page="Plantilla.jsp"/>
+<jsp:include page="PlantillaAdmin.jsp"/>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>

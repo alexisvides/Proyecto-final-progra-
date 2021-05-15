@@ -15,7 +15,6 @@
             <div class="row">
                 <div class="col-sm-12">
                     <h1 class="text-center">Roles</h1>
-                    <a class="btn btn-primary pull-right" style="color:white!important;" href="ControllerRol?accion=agregar"><b><i class="glyphicon glyphicon-plus"></i> Agregar Nuevo</b></a>
                     <br>
                     <br>
                     <table border="1" width="1" cellspacing="1" class="table table-bordered">
