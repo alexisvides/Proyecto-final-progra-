@@ -25,10 +25,12 @@
                                 <th class="text-center">ID</th>
                                 <th class="text-center">Nombre</th>
                                 <th class="text-center">Apellido</th>
-                                <th class="text-center">Rol</th>
+                                <th class="text-center">Usuario</th>
+                                <th class="text-center">Password</th>
+                                <th class="text-center">Id Rol</th>
                                 <th class="text-center">Activo</th>
-                                <th class="text-center">Creado</th>
-                                <th class="text-center">Actualizado</th>
+                                <th class="text-center">Codigo</th>
+                                <th class="text-center">Acciones</th>
                             </tr>
                         </thead>
                          <%
@@ -38,8 +40,7 @@
                                 Iterator<USUARIO> iteratorUsuario = lstUsuario.iterator();
                                 USUARIO usuario = null;
                                 while (iteratorUsuario.hasNext()) {
-                                    usuario = iteratorUsuario.next();
-                                   
+                                    usuario = iteratorUsuario.next();                                   
 
                             %>                      
                         <tbody>
@@ -47,11 +48,15 @@
                                 <td class="text-center"><%= usuario.getID_USUARIO() %></td>
                                 <td class="text-center"><%= usuario.getNOMBRE()%></td>
                                 <td class="text-center"><%= usuario.getAPELLIDO()%></td>
+                                <td class="text-center"><%= usuario.getUSUARIO()%></td>
+                                <td class="text-center"><%= usuario.getPASSWORD()%></td>
                                 <td class="text-center"><%= usuario.getID_ROL()%></td>
                                 <td class="text-center"><%= usuario.getACTIVO()%></td>
-                                <td class="text-center"><%= usuario.getFECHA_CREA()%></td>
-                                <td class="text-center"><%= usuario.getFECHA_MOD()%></td>
-                               
+                                <td class="text-center"><%= usuario.getCODIGO()%></td>  
+                                <td class="text-center">                                
+                                    <a href="ControllerUsuario?accion=editar&id=<%=usuario.getID_USUARIO()%>" class="btn btn-warning a-btn-slide-text"><i class="fas fa-edit"></i> Editar</a>
+                                    <a href="ControllerUsuario?accion=eliminar&id=<%=usuario.getID_USUARIO()%>" class="btn btn-danger a-btn-slide-text"><i class="fas fa-trash-alt"></i> Eliminar</a>
+                                </td>
                             </tr>
                             <%}%>
                         </tbody>
