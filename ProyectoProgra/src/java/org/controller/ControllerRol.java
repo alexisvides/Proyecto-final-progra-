@@ -19,7 +19,7 @@ import org.models.ROL;
 @WebServlet(name = "ControllerRol", urlPatterns = {"/ControllerRol"})
 public class ControllerRol extends HttpServlet {
     
-    String prime="Plantilla.jsp", ingreso = "index.jsp", vista="rolConsulta.jsp", agregar = "rolIngreso.jsp";
+    String prime="Plantilla.jsp",  vista1= "rolConsultaAdmin.jsp", ingreso="rolConsulta.jsp", agregar = "rolIngreso.jsp";
     String modificar = "";
 
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
@@ -49,17 +49,20 @@ public class ControllerRol extends HttpServlet {
         DaoRol daoRol = new DaoRol();
 
         switch (action) {
+            case "vistaN":
+                acceso = ingreso;
+                break;
             case "vista":
-                acceso = vista;
+                acceso = vista1;
                 break;
             case "index":
                 acceso = prime;            
                 break;
             case "eliminar":
                 rol = new ROL();
-                rol.setID_ROL(Integer.parseInt(request.getParameter("ID_ROL")));
+                rol.setID_ROL(Integer.parseInt(request.getParameter("id")));
                 daoRol.eliminar(rol);
-                acceso = vista;
+                acceso = vista1;
                 break;
             case "modificar":
                 rol = new ROL();
@@ -82,7 +85,7 @@ public class ControllerRol extends HttpServlet {
                 rol.setUSUARIO_MOD(request.getParameter("usuario_mod"));
                 
                 daoRol.insertar(rol);
-                acceso = vista;
+                acceso = vista1;
                 break;
 
         }

@@ -6,7 +6,7 @@
 <%@page import="java.sql.Statement"%>
 <%@page import="org.models.MODULO"%>
 <%@page import="org.dao.DaoModulo"%>
-<jsp:include page="NavBar.jsp"/>
+<jsp:include page="PlantillaAdmin.jsp"/>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -38,11 +38,7 @@
                                     <input name="modulo_padre" id="modulo_padre" class="form-control" placeholder="Modulo Padre" type="text">
                                 </div>
                                 <br>
-                                <div class="col-md-12">
-                                    <label for ="activo" class="control-label" >Activo</label>
-                                    <input name="activo" id="activo" class="form-control" placeholder="Activo" type="text">
-                                </div>
-                                <br>
+                                
                                 <div class="col-md-12">
                                     <label for ="usuario_crea" class="control-label">Usuario Creacion</label>
                                     <input name="usuario_crea" id="usuario_crea" placeholder="Usuario Creacion" type="text" class="form-control">

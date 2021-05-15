@@ -6,7 +6,7 @@
 <%@page import="java.sql.Statement"%>
 <%@page import="org.models.ROL"%>
 <%@page import="org.dao.DaoRol"%>
-<jsp:include page="NavBar.jsp"/>
+<jsp:include page="PlantillaAdmin.jsp"/>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>

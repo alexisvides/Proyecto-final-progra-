@@ -4,6 +4,7 @@
 <%@page import="java.util.List"%>
 <%@page import="org.dao.DaoUsuario"%>
 <%@page import="org.dao.DaoRol"%>
+<jsp:include page="PlantillaAdmin.jsp"/>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -50,7 +51,7 @@
                                 <td class="text-center"><%= rol.getUSUARIO_MOD()%></td>
                                 <td class="text-center">                                
                                     <a href="ControllerRol?accion=editar&id=<%=rol.getID_ROL()%>">Editar</a>
-                                    <a href="ControllerRol?accion=delete&id=<%=rol.getID_ROL()%>">Eliminar</a>
+                                    <a href="ControllerRol?accion=eliminar&id=<%=rol.getID_ROL()%>">Eliminar</a>
                                 </td>
                             </tr>
                             <%}%>

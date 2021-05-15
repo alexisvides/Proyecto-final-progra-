@@ -18,7 +18,7 @@ import org.models.MODULO;
 @WebServlet(name = "ControllerModulo", urlPatterns = {"/ControllerModulo"})
 public class ControllerModulo extends HttpServlet {
 
-    String prime="Plantilla.jsp", ingreso = "index.jsp", vista="moduloConsulta.jsp", agregar = "moduloIngreso.jsp";
+    String prime="Plantilla.jsp",  vista1= "moduloConsultaAdmin.jsp", ingreso="moduloConsulta.jsp", agregar = "moduloIngreso.jsp";
     String modificar = "";
 
     /**
@@ -68,17 +68,20 @@ public class ControllerModulo extends HttpServlet {
 
         switch (action) {
 
+            case "vistaN":
+                acceso = ingreso;
+                break;
             case "vista":
-                acceso = vista;
+                acceso = vista1;
                 break;
             case "index":
                 acceso = prime;            
                 break;
             case "eliminar":
                 modulo = new MODULO();
-                modulo.setID_MODULO(Integer.parseInt(request.getParameter("ID_MODULO")));
+                modulo.setID_MODULO(Integer.parseInt(request.getParameter("id")));
                 daoModulo.eliminar(modulo);
-                acceso = ingreso;
+                acceso = vista1;
                 break;
             case "modificar":
                 modulo = new MODULO();
@@ -102,11 +105,10 @@ public class ControllerModulo extends HttpServlet {
                 modulo.setNOMBRE(request.getParameter("nombre"));
                 modulo.setDESCRIPCION(request.getParameter("descripcion"));
                 modulo.setID_MODULO_PADRE(Integer.parseInt(request.getParameter("modulo_padre")));
-                modulo.setACTIVO(Integer.parseInt(request.getParameter("activo")));
                 modulo.setUSUARIO_CREA(request.getParameter("usuario_crea"));
                 modulo.setUSUARIO_MOD(request.getParameter("usuario_mod"));
                 daoModulo.insertar(modulo);
-                acceso = vista;
+                acceso = vista1;
                 break;
 
         }

@@ -2,7 +2,7 @@
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.List"%>
 <%@page import="org.dao.DaoRol"%>
-<jsp:include page="NavBar.jsp"/>
+<jsp:include page="Plantilla.jsp"/>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -26,7 +26,6 @@
                                 <th class="text-center">Descripcion</th>
                                 <th class="text-center">Usuario Creacion</th>
                                 <th class="text-center">Usuario Modificacion</th>
-                                <th class="text-center">Acciones</th>
                             </tr>
                         </thead>
                         <%
@@ -44,9 +43,7 @@
                                 <td class="text-center"><%= rol.getDESCRIPCION()%></td>
                                 <td class="text-center"><%= rol.getUSUARIO_CREA() %></td>
                                 <td class="text-center"><%= rol.getUSUARIO_MOD()%></td>
-                                <td class="text-center">                                
-                                    <a href="ControllerRol?accion=editar&id=<%=rol.getID_ROL()%>" class="btn btn-warning a-btn-slide-text"><i class="fas fa-edit"></i> Editar</a>
-                                </td>
+                                
                             </tr>
                             <%}%>
                         </tbody>

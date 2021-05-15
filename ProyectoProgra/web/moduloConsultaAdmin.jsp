@@ -3,8 +3,8 @@
 <%@page import="java.util.List"%>
 <%@page import="org.dao.DaoUsuario"%>
 <%@page import="org.dao.DaoModulo"%>
+<jsp:include page="Plantilla.jsp"/>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
- <jsp:include page="PlantillaAdmin.jsp"/>
 <!DOCTYPE html>
 <html>
     <head>
@@ -12,55 +12,53 @@
         <title>Consulta Modulo</title>
     </head>
     <body>
-       
+
         <div class="container">      
             <div class="row">
                 <div class="col-sm-12">
                     <h1 class="text-center">Modulo</h1>
-                    <a class="btn btn-primary pull-right" style="color:white!important;" href="Roles?accion=nuevo"  ><b><i class="glyphicon glyphicon-plus"></i> Agregar Nuevo</b></a>
+                    <a class="btn btn-primary pull-right" style="color:white!important;" href="ControllerModulo?accion=agregar"  ><b><i class="glyphicon glyphicon-plus"></i> Agregar Nuevo</b></a>
                     <br>
                     <br>
                     <table border="1" width="1" cellspacing="1" class="table table-bordered">
                         <thead>
                             <tr>
                                 <th class="text-center">ID</th>
-                                <th class="text-center">Modulo</th>
+                                <th class="text-center">Nombre</th>
                                 <th class="text-center">Descripcion</th>
-                                <th class="text-center">Creado</th>
-                                <th class="text-center">Actualizado</th>
-                                <th class="text-center">Acciones</th>
+                                <th class="text-center">Modulo Padre</th>
+                                <th class="text-center">Usuario Creacion</th>
+                                <th class="text-center">Usuario Modificacion</th>
                             </tr>
                         </thead>
                         <%
                             DaoModulo daoModulo = new DaoModulo();
-                            DaoUsuario daoUsuario = new  DaoUsuario();
                             List<MODULO> lstModulo = daoModulo.listar();
                             Iterator<MODULO> iteratorModulo = lstModulo.iterator();
                             MODULO modulo = null;
-                            MODULO usuario = null;
-                            while (iteratorModulo.hasNext()){
-                                modulo = iteratorModulo.next();                        
-                                
-                                
-                       %>                     
+                            while (iteratorModulo.hasNext()) {
+                                modulo = iteratorModulo.next();
+
+
+                        %>                     
                         <tbody>
                             <tr>
                                 <td class="text-center"><%= modulo.getID_MODULO()%></td>
                                 <td class="text-center"><%= modulo.getNOMBRE()%></td>
                                 <td class="text-center"><%= modulo.getDESCRIPCION()%></td>
-                                <td class="text-center"><%= modulo.getACTIVO()%></td>
-                                <td class="text-center"><%= modulo.getUSUARIO_CREA()%></td>
-                            
-                                <td class="text-center"><%= usuario.getUSUARIO_MOD()%></td>
+                                <td class="text-center"><%= modulo.getID_MODULO_PADRE()%></td>
+                                <td class="text-center"><%= modulo.getUSUARIO_CREA()%></td>                            
+                                <td class="text-center"><%= modulo.getUSUARIO_MOD()%></td>
                                 <td class="text-center">                                
-                                    <a href="ControllerModulo?accion=editar%>">Editar</a>
-                                    <a href="ControllerModulo?accion=delete%>">Eliminar</a>
+                                    <a href="ControllerModulo?accion=editar&id=<%=modulo.getID_MODULO()%>" class="btn btn-warning a-btn-slide-text"><i class="fas fa-edit"></i> Editar</a>
+                                    <a href="ControllerModulo?accion=eliminar&id=<%=modulo.getID_MODULO()%>" class="btn btn-danger a-btn-slide-text"><i class="fas fa-trash-alt"></i> Eliminar</a>
+
                                 </td>
                             </tr>
                             <%}%>
                         </tbody>
                     </table>
-                    
+
                 </div>
             </div>
         </div>
@@ -70,3 +68,4 @@
         <script src="//kit.fontawesome.com/ab9769543f.js" crossorigin="anonymous"></script>
     </body>
 </html>
+

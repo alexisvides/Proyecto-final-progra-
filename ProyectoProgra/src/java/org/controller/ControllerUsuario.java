@@ -25,7 +25,8 @@ import org.models.LOGIN;
 @WebServlet(name = "ControllerUsuario", urlPatterns = {"/ControllerUsuario"})
 public class ControllerUsuario extends HttpServlet {
 
-    String agregar = "usuarioIngreso.jsp", prime="Plantilla.jsp", ingreso = "usuarioConsultaAdmin.jsp", vista ="usuarioConsulta.jsp", exit = "index.jsp", modify = "/Mantenimientos/Modificacion/Modifmodulo.jsp";
+    String agregar = "usuarioIngreso.jsp", prime2="Plantilla.jsp",prime1="PlantillaAdmin.jsp", ingreso = "usuarioConsulta.jsp",
+            vista1 ="usuarioConsultaAdmin.jsp", exit = "index.jsp", modify = "/Mantenimientos/Modificacion/ModificarUsuario.jsp";
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -74,7 +75,11 @@ public class ControllerUsuario extends HttpServlet {
         DaoUsuario daoUSUARIO = new DaoUsuario();
 
         switch (action) {
-
+            case "vistaN":
+                acceso =ingreso ;
+                
+                break;
+                
             case "login":
                 boolean logeado = false;
                 String us = "";
@@ -95,14 +100,14 @@ public class ControllerUsuario extends HttpServlet {
                                 && login.getACTIVO()==1 && login.getRol()==2) {
                             
                             log.setEncendido(1);
-                            acceso = prime;
+                            acceso = prime2;
                             break;
                         }
                         if (login.getUSUARIO().equals(request.getParameter("USUARIO")) && login.getPASSWORD().equals(request.getParameter("PASSWORD")) 
                                 && login.getACTIVO()==1  && login.getRol()==1) {
                             
                             log.setEncendido(1);
-                            acceso = prime;
+                            acceso = prime1;
                             break;
                         }
                     }
@@ -113,10 +118,10 @@ public class ControllerUsuario extends HttpServlet {
 
                 break;
             case "index":
-                acceso = prime;            
+                acceso = prime1;            
                 break;
             case "vista":
-                acceso = vista;
+                acceso = vista1;
                 break;
             case "eliminar":
                 usuario = new USUARIO();
@@ -124,7 +129,7 @@ public class ControllerUsuario extends HttpServlet {
                 id = Integer.parseInt(request.getParameter("id"));
                 usuario.setID_USUARIO(id);
                 daoUSUARIO.eliminar(usuario);
-                acceso = vista;
+                acceso = vista1;
                 break;
             case "modificar":
                 usuario = new USUARIO();
@@ -153,7 +158,7 @@ public class ControllerUsuario extends HttpServlet {
                 usuario.setACTIVO(Integer.parseInt(request.getParameter("activo")));
                 usuario.setCODIGO(Integer.parseInt(request.getParameter("codigo")));
                 daoUSUARIO.insertar(usuario);
-                acceso = vista;
+                acceso = vista1;
                 break;
 
         }

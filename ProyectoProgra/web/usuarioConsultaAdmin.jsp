@@ -2,6 +2,7 @@
 <%@page import="org.models.USUARIO"%>
 <%@page import="java.util.List"%>
 <%@page import="org.dao.DaoUsuario"%>
+<jsp:include page="PlantillaAdmin.jsp"/>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -54,8 +55,8 @@
                                 <td class="text-center"><%= usuario.getFECHA_MOD()%></td>
                                 <td class="text-center">     
                                     
-                                    <a href="ControllerUsuario?accion=editar" value=<%= usuario.getID_USUARIO() %>>Editar</a>
-                                    <a href="ControllerUsuario?accion=eliminar" value=<%= usuario.getID_USUARIO() %>>Eliminar</a>
+                                    <a href="ControllerUsuario?accion=editar&id=<%=usuario.getID_USUARIO() %>">Editar</a>
+                                    <a href="ControllerUsuario?accion=eliminar&id=<%=usuario.getID_USUARIO() %>">Editar</a>
                                     
                                     
                                 </td>

@@ -2,7 +2,7 @@
 <%@page import="org.models.USUARIO"%>
 <%@page import="java.util.List"%>
 <%@page import="org.dao.DaoUsuario"%>
-<jsp:include page="NavBar.jsp"/>
+<jsp:include page="Plantilla.jsp"/>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -31,7 +31,6 @@
                                 <th class="text-center">Id Rol</th>
                                 <th class="text-center">Activo</th>
                                 <th class="text-center">Codigo</th>
-                                <th class="text-center">Acciones</th>
                             </tr>
                         </thead>
                          <%
@@ -54,10 +53,6 @@
                                 <td class="text-center"><%= usuario.getID_ROL()%></td>
                                 <td class="text-center"><%= usuario.getACTIVO()%></td>
                                 <td class="text-center"><%= usuario.getCODIGO()%></td>  
-                                <td class="text-center">                                
-                                    <a href="ControllerUsuario?accion=editar&id=<%=usuario.getID_USUARIO()%>" class="btn btn-warning a-btn-slide-text"><i class="fas fa-edit"></i> Editar</a>
-                                    <a href="ControllerUsuario?accion=eliminar&id=<%=usuario.getID_USUARIO()%>" class="btn btn-danger a-btn-slide-text"><i class="fas fa-trash-alt"></i> Eliminar</a>
-                                </td>
                             </tr>
                             <%}%>
                         </tbody>

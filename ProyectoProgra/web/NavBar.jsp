@@ -30,7 +30,7 @@
                             <a class="nav-link active" href="ControllerModulo?accion=vista">Modulo</a>
                         </li>
                         <li style="float: left;" title="Administrar roles" class="nav-item">
-                            <a class="nav-link active" href="ControllerUsuario?accion=vista">Usuarios</a>
+                            <a class="nav-link active" href="ControllerUsuario?accion=vistaN">Usuarios</a>
                         </li>
                         <li style="float: left;" title="Administrar roles" class="nav-item">
                             <a class="nav-link active" href="ControllerUsuario?accion=cerrar">Cerrar Sesión</a>
