@@ -23,19 +23,19 @@
                         <thead>
                             <tr>
                                 <th class="text-center">ID</th>
-                                <th class="text-center">Modulo</th>
+                                <th class="text-center">Nombre</th>
                                 <th class="text-center">Descripcion</th>
-                                <th class="text-center">Creado</th>
-                                <th class="text-center">Actualizado</th>
+                                <th class="text-center">Modulo Padre</th>
+                                <th class="text-center">Activo</th>
+                                <th class="text-center">Usuario Creacion</th>
+                                <th class="text-center">Usuario Modificacion</th>
                             </tr>
                         </thead>
                         <%
                             DaoModulo daoModulo = new DaoModulo();
-                            DaoUsuario daoUsuario = new  DaoUsuario();
                             List<MODULO> lstModulo = daoModulo.listar();
                             Iterator<MODULO> iteratorModulo = lstModulo.iterator();
                             MODULO modulo = null;
-                            MODULO usuario = null;
                             while (iteratorModulo.hasNext()){
                                 modulo = iteratorModulo.next();                        
                                 
@@ -46,10 +46,10 @@
                                 <td class="text-center"><%= modulo.getID_MODULO()%></td>
                                 <td class="text-center"><%= modulo.getNOMBRE()%></td>
                                 <td class="text-center"><%= modulo.getDESCRIPCION()%></td>
+                                <td class="text-center"><%= modulo.getID_MODULO_PADRE()%></td>
                                 <td class="text-center"><%= modulo.getACTIVO()%></td>
-                                <td class="text-center"><%= modulo.getUSUARIO_CREA()%></td>
-                            
-                                <td class="text-center"><%= usuario.getUSUARIO_MOD()%></td>
+                                <td class="text-center"><%= modulo.getUSUARIO_CREA()%></td>                            
+                                <td class="text-center"><%= modulo.getUSUARIO_MOD()%></td>
                             </tr>
                             <%}%>
                         </tbody>
