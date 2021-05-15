@@ -64,10 +64,12 @@ public class ControllerRol extends HttpServlet {
                 daoRol.eliminar(rol);
                 acceso = vista1;
                 break;
+
             case "editar":
                 request.setAttribute("id_Cliente", request.getParameter("id"));
                 acceso = modify;
                 break;
+
             case "modificar":
                 rol = new ROL();
                 rol.setNOMBRE(request.getParameter("nombre"));
