@@ -27,6 +27,7 @@
                                 <th class="text-center">Descripcion</th>
                                 <th class="text-center">Creado</th>
                                 <th class="text-center">Actualizado</th>
+                                <th class="text-center">Acciones</th>
                             </tr>
                         </thead>
                         <%
@@ -50,6 +51,10 @@
                                 <td class="text-center"><%= modulo.getUSUARIO_CREA()%></td>
                             
                                 <td class="text-center"><%= usuario.getUSUARIO_MOD()%></td>
+                                <td class="text-center">                                
+                                    <a href="ControllerModulo?accion=editar%>">Editar</a>
+                                    <a href="ControllerModulo?accion=delete%>">Eliminar</a>
+                                </td>
                             </tr>
                             <%}%>
                         </tbody>
