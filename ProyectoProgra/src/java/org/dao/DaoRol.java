@@ -44,11 +44,8 @@ public class DaoRol implements CrudRol{
                 rol.setID_ROL(rs.getInt("ID_ROL"));
                 rol.setNOMBRE(rs.getString("NOMBRE"));
                 rol.setDESCRIPCION(rs.getString("DESCRIPCION"));
-                rol.setACTIVO(rs.getInt("ACTIVO"));
                 rol.setUSUARIO_CREA(rs.getString("USUARIO_CREA"));
                 rol.setUSUARIO_MOD(rs.getString("USUARIO_MOD"));
-                rol.setFECHA_CREA(rs.getDate("FECHA_CREA"));
-                rol.setFECHA_MOD(rs.getDate("FECHA_MOD"));                
                 lstRol.add(rol);
             }
             rs.close();
@@ -71,13 +68,10 @@ public class DaoRol implements CrudRol{
     @Override
     public boolean insertar(ROL rol) {
        
-        strSql = "INSERT INTO ROL (ID_ROL, NOMBRE, DESCRIPCION, ACTIVO, USUARIO_CREA, USUARIO_MOD, FECHA_CREA, FECHA_MOD) VALUES ("
+        strSql = "INSERT INTO ROL (ID_ROL, NOMBRE, DESCRIPCION, USUARIO_CREA, USUARIO_MOD) VALUES ("
                 + "SELECT  (SELECT ISNULL(MAX(ID_ROL),0) + 1 FROM ROL), " +                 
                 "'" + rol.getNOMBRE()+ "', " +       
                 "'" + rol.getDESCRIPCION()+ "', " +
-                "'" + rol.getACTIVO()+ "'" + 
-                "'" + rol.getFECHA_CREA()+ "', " +
-                "'" + rol.getFECHA_MOD()+ "', " +
                 "'" + rol.getUSUARIO_CREA()+ "', " +
                 "'" + rol.getUSUARIO_MOD()+ "' )";
         
@@ -103,11 +97,8 @@ public class DaoRol implements CrudRol{
     public boolean modificar(ROL rol) {
         strSql = "UPDATE  ROL SET NOMBRE = '" + rol.getNOMBRE()+ "', "
                 + "DESCRIPCION = '" + rol.getDESCRIPCION()+ "', "
-                + "ACTIVO = " + rol.getACTIVO()+ ", "
                 + "USUARIO_CREA = '" + rol.getUSUARIO_CREA()+ "', "
                 + "USUARIO_MOD = '" + rol.getUSUARIO_MOD()+ "', "
-                + "FECHA_CREA = '" + rol.getFECHA_CREA()+ "', "
-                + "FECHA_MOD = '" + rol.getFECHA_MOD()+ "' "
                 + "WHERE ID_ROL = " + rol.getID_ROL()+ "";
 
         try {

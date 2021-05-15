@@ -48,7 +48,10 @@
                                 <td class="text-center"><%= rol.getDESCRIPCION()%></td>
                                 <td class="text-center"><%= rol.getUSUARIO_CREA() %></td>
                                 <td class="text-center"><%= rol.getUSUARIO_MOD()%></td>
-                                
+                                <td class="text-center">                                
+                                    <a href="ControllerRol?accion=editar&id=<%=rol.getID_ROL()%>">Editar</a>
+                                    <a href="ControllerRol?accion=delete&id=<%=rol.getID_ROL()%>">Eliminar</a>
+                                </td>
                             </tr>
                             <%}%>
                         </tbody>
@@ -63,3 +66,5 @@
         <script src="//kit.fontawesome.com/ab9769543f.js" crossorigin="anonymous"></script>
     </body>
 </html>
+
+ 
