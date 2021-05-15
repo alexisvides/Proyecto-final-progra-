@@ -1,9 +1,8 @@
-<%@page import="org.models.USUARIO"%>
 <%@page import="org.models.ROL"%>
 <%@page import="java.util.Iterator"%>
 <%@page import="java.util.List"%>
-<%@page import="org.dao.DaoUsuario"%>
 <%@page import="org.dao.DaoRol"%>
+<jsp:include page="NavBar.jsp"/>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
@@ -16,7 +15,7 @@
             <div class="row">
                 <div class="col-sm-12">
                     <h1 class="text-center">Roles</h1>
-                    <a class="btn btn-primary pull-right" style="color:white!important;" href="Roles?accion=nuevo"  ><b><i class="glyphicon glyphicon-plus"></i> Agregar Nuevo</b></a>
+                    <a class="btn btn-primary pull-right" style="color:white!important;" href="ControllerRol?accion=agregar"><b><i class="glyphicon glyphicon-plus"></i> Agregar Nuevo</b></a>
                     <br>
                     <br>
                     <table border="1" width="1" cellspacing="1" class="table table-bordered">
@@ -25,21 +24,18 @@
                                 <th class="text-center">ID</th>
                                 <th class="text-center">Rol</th>
                                 <th class="text-center">Descripcion</th>
-                                <th class="text-center">Creado</th>
-                                <th class="text-center">Actualizado</th>
+                                <th class="text-center">Usuario Creacion</th>
+                                <th class="text-center">Usuario Modificacion</th>
+                                <th class="text-center">Acciones</th>
                             </tr>
                         </thead>
                         <%
                             DaoRol daoRol = new DaoRol();
-                            DaoUsuario daoUsuario = new  DaoUsuario();
                             List<ROL> lstRol = daoRol.listar();
                             Iterator<ROL> iteratorRol = lstRol.iterator();
                             ROL rol = null;
-                            USUARIO usuario = null;
                             while (iteratorRol.hasNext()){
-                                rol = iteratorRol.next();                        
-                                
-                                
+                                rol = iteratorRol.next();
                         %>                     
                         <tbody>
                             <tr>
@@ -48,7 +44,9 @@
                                 <td class="text-center"><%= rol.getDESCRIPCION()%></td>
                                 <td class="text-center"><%= rol.getUSUARIO_CREA() %></td>
                                 <td class="text-center"><%= rol.getUSUARIO_MOD()%></td>
-                                
+                                <td class="text-center">                                
+                                    <a href="ControllerRol?accion=editar&id=<%=rol.getID_ROL()%>" class="btn btn-warning a-btn-slide-text"><i class="fas fa-edit"></i> Editar</a>
+                                </td>
                             </tr>
                             <%}%>
                         </tbody>

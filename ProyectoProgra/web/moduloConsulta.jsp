@@ -3,6 +3,7 @@
 <%@page import="java.util.List"%>
 <%@page import="org.dao.DaoUsuario"%>
 <%@page import="org.dao.DaoModulo"%>
+<jsp:include page="NavBar.jsp"/>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>

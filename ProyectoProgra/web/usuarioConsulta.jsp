@@ -2,6 +2,7 @@
 <%@page import="org.models.USUARIO"%>
 <%@page import="java.util.List"%>
 <%@page import="org.dao.DaoUsuario"%>
+<jsp:include page="NavBar.jsp"/>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>

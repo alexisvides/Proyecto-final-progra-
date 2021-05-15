@@ -1,9 +1,3 @@
-<%-- 
-    Document   : index
-    Created on : 13/02/2021, 11:41:04 AM
-    Author     : Joseph
---%>
-
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
