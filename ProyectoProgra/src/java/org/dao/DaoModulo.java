@@ -21,26 +21,20 @@ public class DaoModulo implements CrudModulo{
     public List listar() {
          ArrayList<MODULO> lstModulo = new ArrayList<>();
          try {            
-            strSql = "SELECT * MODULO";
+            strSql = "SELECT * FROM MODULO";
             conexion.open();
             rs = conexion.executeQuery(strSql);                             
             
             while (rs.next()) {
-                MODULO mod = new MODULO();
-                mod.setID_MODULO(rs.getInt("ID_MODULO"));                
-                mod.setNOMBRE(rs.getString("NOMBRE"));
-                mod.setDESCRIPCION(rs.getString("DESCRIPCION"));
-                mod.setPATH(rs.getString("PATH"));
-                mod.setNIVEL(rs.getInt("NIVEL"));
-                mod.setORDEN(rs.getInt("ORDEN"));
-                mod.setID_MODULO_PADRE(rs.getInt("ID_MODULO_PADRE"));
-                mod.setACTIVO(rs.getInt("ACTIVO"));
-                mod.setUSUARIO_CREA(rs.getString("USUARIO_CREA"));
-                mod.setUSUARIO_MOD(rs.getString("USUARIO_MOD"));
-                mod.setFECHA_CREA(rs.getString("FECHA_CREA"));
-                mod.setFECHA_MOD(rs.getString("FECHA_MOD"));
+                MODULO mod1 = new MODULO();
+                mod1.setID_MODULO(rs.getInt("ID_MODULO"));                
+                mod1.setNOMBRE(rs.getString("NOMBRE"));
+                mod1.setDESCRIPCION(rs.getString("DESCRIPCION"));
+                mod1.setID_MODULO_PADRE(rs.getInt("ID_MODULO_PADRE"));
+                mod1.setUSUARIO_CREA(rs.getString("USUARIO_CREA"));
+                mod1.setUSUARIO_MOD(rs.getString("USUARIO_MOD"));
                                 
-                lstModulo.add(mod);
+                lstModulo.add(mod1);
             }
             rs.close();
             conexion.close();
@@ -61,22 +55,16 @@ public class DaoModulo implements CrudModulo{
 
     @Override
     public boolean insertar(MODULO modulo) {
-        strSql = "INSERT INTO MODULO (ID_MODULO, NOMBRE, DESCRIPCION, PATH, NIVEL, ORDEN, ID_MODULO_PADRE, ACTIVO, "
-                + "USUARIO_CREA, USUARIO_MOD, FECHA_CREA, FECHA_MOD) VALUES("
+        strSql = "INSERT INTO MODULO (ID_MODULO, NOMBRE, DESCRIPCION, ID_MODULO_PADRE, "
+                + "USUARIO_CREA, USUARIO_MOD) VALUES("
                 + "SELECT  (SELECT ISNULL(MAX(ID_MODULO),0) + 1 FROM MODULO), " +
                 "'" + modulo.getNOMBRE()+ "', " +
                 "'" + modulo.getDESCRIPCION()+ "', " +
-                "'" + modulo.getPATH()+ "', " +
-                "" + modulo.getNIVEL()+ ", " +
-                "" + modulo.getORDEN()+ ", " +
                 "" + modulo.getID_MODULO_PADRE()+ ", " + 
-                "" + modulo.getACTIVO()+ ", " +
                 "'" + modulo.getUSUARIO_CREA()+ "', " +
-                "'" + modulo.getUSUARIO_MOD()+ "', " +
-                "'" + modulo.getFECHA_CREA()+ "', " +
-                "'" + modulo.getFECHA_MOD()+ "' )";
+                "'" + modulo.getUSUARIO_MOD()+ "', " ;
         
-        try {
+        try{
             //se abre una conexión hacia la BD
             conexion.open();
             //Se ejecuta la instrucción y retorna si la ejecución fue satisfactoria
@@ -96,17 +84,11 @@ public class DaoModulo implements CrudModulo{
 
     @Override
     public boolean modificar(MODULO modulo) {
-        strSql = "UPDATE  CLIENTE SET NOMBRE = '" +modulo.getNOMBRE()+ "', "+
+        strSql = "UPDATE  MODULO SET NOMBRE = '" +modulo.getNOMBRE()+ "', "+
                  "DESCRIPCION = '" + modulo.getDESCRIPCION()+ "', "+
-                 "PATH = '" + modulo.getPATH()+ "' , " +
-                 "NIVEL = " + modulo.getNIVEL()+ ", " +
-                 "ORDEN = " + modulo.getORDEN()+ ", " +
                  "ID_MODULO_PADRE = " + modulo.getID_MODULO_PADRE()+ ", " +
-                 "ACTIVO = " + modulo.getACTIVO()+ ", " +
                  "USUARIO_CREA = '" + modulo.getUSUARIO_CREA()+ "', "+
                  "USUARIO_MOD = '" + modulo.getUSUARIO_MOD()+ "', "+
-                 "FECHA_CREA = '" + modulo.getFECHA_CREA()+ "', "+
-                 "FECHA_MOD = '" + modulo.getDESCRIPCION()+ "', "+
                  "WHERE ID_MODULO = " + modulo.getID_MODULO()+ "";
         
         try {
