@@ -17,7 +17,7 @@
             <div class="row">
                 <div class="col-sm-12">
                     <h1 class="text-center">Modulo</h1>
-                    <a class="btn btn-primary pull-right" style="color:white!important;" href="Roles?accion=nuevo"  ><b><i class="glyphicon glyphicon-plus"></i> Agregar Nuevo</b></a>
+                    <a class="btn btn-primary pull-right" style="color:white!important;" href="ControllerModulo?accion=agregar"  ><b><i class="glyphicon glyphicon-plus"></i> Agregar Nuevo</b></a>
                     <br>
                     <br>
                     <table border="1" width="1" cellspacing="1" class="table table-bordered">
@@ -30,6 +30,7 @@
                                 <th class="text-center">Activo</th>
                                 <th class="text-center">Usuario Creacion</th>
                                 <th class="text-center">Usuario Modificacion</th>
+                                <th class="text-center">Acciones</th>
                             </tr>
                         </thead>
                         <%
@@ -51,6 +52,10 @@
                                 <td class="text-center"><%= modulo.getACTIVO()%></td>
                                 <td class="text-center"><%= modulo.getUSUARIO_CREA()%></td>                            
                                 <td class="text-center"><%= modulo.getUSUARIO_MOD()%></td>
+                                <td class="text-center">                                
+                                    <a href="ControllerModulo?accion=editar&id=<%=modulo.getID_MODULO()%>" class="btn btn-warning a-btn-slide-text"><i class="fas fa-edit"></i> Editar</a>
+                                    <a href="ControllerModulo?accion=eliminar&id=<%=modulo.getID_MODULO()%>" class="btn btn-danger a-btn-slide-text"><i class="fas fa-trash-alt"></i> Eliminar</a>
+                                </td>
                             </tr>
                             <%}%>
                         </tbody>

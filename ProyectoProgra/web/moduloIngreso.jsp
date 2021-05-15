@@ -4,8 +4,8 @@
 <%@page import="java.sql.Connection"%>
 <%@page import="java.sql.SQLException"%>
 <%@page import="java.sql.Statement"%>
-<%@page import="org.models.ROL"%>
-<%@page import="org.dao.DaoRol"%>
+<%@page import="org.models.MODULO"%>
+<%@page import="org.dao.DaoModulo"%>
 <jsp:include page="NavBar.jsp"/>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -19,9 +19,9 @@
             <div class="row">
                 <div class="col-lg-12">                    
                     <div class="center-block">
-                        <h1 class="text-center">Registrar Rol</h1>
+                        <h1 class="text-center">Registrar Modulo</h1>
                         <br>
-                        <form id="form-work" class="" name="text-center border border-light p-5" action="ControllerRol" method="get">                                                   
+                        <form id="form-work" class="" name="text-center border border-light p-5" action="ControllerModulo" method="get">                                                   
                             <div class="form-group align">
                                 <div class="col-md-12">
                                     <label for ="nombre" class="control-label" >Nombre</label>
@@ -31,6 +31,16 @@
                                 <div class="col-md-12">
                                     <label for ="descripcion" class="control-label" >Descripcion</label>
                                     <input name="descripcion" id="descripcion" class="form-control" placeholder="Descripcion" type="text">
+                                </div>
+                                <br>
+                                <div class="col-md-12">
+                                    <label for ="modulo_padre" class="control-label" >Modulo Padre</label>
+                                    <input name="modulo_padre" id="modulo_padre" class="form-control" placeholder="Modulo Padre" type="text">
+                                </div>
+                                <br>
+                                <div class="col-md-12">
+                                    <label for ="activo" class="control-label" >Activo</label>
+                                    <input name="activo" id="activo" class="form-control" placeholder="Activo" type="text">
                                 </div>
                                 <br>
                                 <div class="col-md-12">

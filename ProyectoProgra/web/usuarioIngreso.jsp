@@ -4,8 +4,8 @@
 <%@page import="java.sql.Connection"%>
 <%@page import="java.sql.SQLException"%>
 <%@page import="java.sql.Statement"%>
-<%@page import="org.models.ROL"%>
-<%@page import="org.dao.DaoRol"%>
+<%@page import="org.models.USUARIO"%>
+<%@page import="org.dao.DaoUsuario"%>
 <jsp:include page="NavBar.jsp"/>
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -19,9 +19,9 @@
             <div class="row">
                 <div class="col-lg-12">                    
                     <div class="center-block">
-                        <h1 class="text-center">Registrar Rol</h1>
+                        <h1 class="text-center">Registrar Usuario</h1>
                         <br>
-                        <form id="form-work" class="" name="text-center border border-light p-5" action="ControllerRol" method="get">                                                   
+                        <form id="form-work" class="" name="text-center border border-light p-5" action="ControllerUsuario" method="get">                                                   
                             <div class="form-group align">
                                 <div class="col-md-12">
                                     <label for ="nombre" class="control-label" >Nombre</label>
@@ -29,20 +29,35 @@
                                 </div>
                                 <br>
                                 <div class="col-md-12">
-                                    <label for ="descripcion" class="control-label" >Descripcion</label>
-                                    <input name="descripcion" id="descripcion" class="form-control" placeholder="Descripcion" type="text">
+                                    <label for ="apellido" class="control-label" >Apellido</label>
+                                    <input name="apellido" id="apellido" class="form-control" placeholder="Apellido" type="text">
                                 </div>
                                 <br>
                                 <div class="col-md-12">
-                                    <label for ="usuario_crea" class="control-label">Usuario Creacion</label>
-                                    <input name="usuario_crea" id="usuario_crea" placeholder="Usuario Creacion" type="text" class="form-control">
+                                    <label for ="usuario" class="control-label" >Usuario</label>
+                                    <input name="usuario" id="usuario" class="form-control" placeholder="Usuario" type="text">
                                 </div>
                                 <br>
                                 <div class="col-md-12">
-                                    <label for ="usuario_mod" class="control-label">Usuario Modificacion</label>
-                                    <input name="usuario_mod" id="usuario_mod" placeholder="Usuario Modificacion" type="text" class="form-control">                           
+                                    <label for ="pass" class="control-label" >Contraseña</label>
+                                    <input name="pass" id="pass" class="form-control" placeholder="Contraseña" type="text">
                                 </div>
-                                <br>    
+                                <br>
+                                <div class="col-md-12">
+                                    <label for ="id_rol" class="control-label" >Id Rol</label>
+                                    <input name="id_rol" id="id_rol" class="form-control" placeholder="Id Rol" type="text">
+                                </div>
+                                <br>
+                                <div class="col-md-12">
+                                    <label for ="activo" class="control-label" >Activo</label>
+                                    <input name="activo" id="activo" class="form-control" placeholder="Activo" type="text">
+                                </div>
+                                <br>
+                                <div class="col-md-12">
+                                    <label for ="codigo" class="control-label">Codigo</label>
+                                    <input name="codigo" id="codigo" placeholder="Codigo" type="text" class="form-control">
+                                </div>
+                                <br>
                                 <div class="col-md-12">
                                     <button id="accion" name="accion" value="add" class="btn btn-success btn-lg btn-block info" type="submit">Registrar</button>                    
                                 </div>
